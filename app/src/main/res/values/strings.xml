@@ -16,6 +16,7 @@ Versao %s<br><br>
     <string name="about_dialog_title">Livro Android</string>
 
     <!-- C -->
+    <string name="content_description">Content description</string>
     <string name="carros">Carros</string>
     <string name="configuracoes">Configurações</string>
     <string name="classicos">Clássicos</string>
