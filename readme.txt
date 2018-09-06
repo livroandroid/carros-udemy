@@ -10,6 +10,10 @@
     Branches
 ---------------
 
+* 01-nav_drawer
+
+    - Mostra o template com Navigation Drawer
+
 * 03-toolbar
 
     - Adicionado o arquivos include_toolbar.xml

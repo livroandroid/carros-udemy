@@ -23,9 +23,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener {
-            val intent = Intent(this,CarrosActivity::class.java)
-            startActivity(intent)
+        fab.setOnClickListener {view ->
+            Snackbar.make(view, "Teste", Snackbar.LENGTH_LONG)
+                    .setAction("OK", null).show()
         }
 
         val toggle = ActionBarDrawerToggle(
