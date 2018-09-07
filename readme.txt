@@ -30,3 +30,8 @@
 
     - Mostra como passar o tipo do carro como parâmetro para a CarrosActivity
     - Dicas sobre Kotlin Android Extension no adapter
+
+* 06-carro-detalhes
+
+    - Criada a activity CarroActivity com o layout dos detalhes do carro
+    - Feito a navegação de tela ao clicar no carro dentro da lista

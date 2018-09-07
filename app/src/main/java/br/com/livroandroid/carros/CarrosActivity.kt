@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import br.com.livroandroid.carros.adapter.CarroAdapter
 import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.TipoCarro
 import kotlinx.android.synthetic.main.activity_carros.*
 import kotlinx.android.synthetic.main.include_toolbar.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class CarrosActivity : AppCompatActivity() {
@@ -34,12 +34,16 @@ class CarrosActivity : AppCompatActivity() {
         recyclerView.itemAnimator = DefaultItemAnimator()
     }
 
+    override fun onPause() {
+        super.onPause()
+    }
+
     override fun onResume() {
         super.onResume()
 
         val carros = CarroService.getCarros(this, tipo)
         recyclerView.adapter = CarroAdapter(carros) { c ->
-            toast("Carro ${c.nome}")
+            startActivity<CarroActivity>("carro" to c)
         }
     }
 }
