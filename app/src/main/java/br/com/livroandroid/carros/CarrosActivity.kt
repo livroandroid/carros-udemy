@@ -2,7 +2,14 @@ package br.com.livroandroid.carros
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.livroandroid.carros.adapter.CarroAdapter
+import br.com.livroandroid.carros.domain.CarroService
+import br.com.livroandroid.carros.domain.TipoCarro
+import kotlinx.android.synthetic.main.activity_carros.*
 import kotlinx.android.synthetic.main.include_toolbar.*
+import org.jetbrains.anko.toast
 
 class CarrosActivity : AppCompatActivity() {
 
@@ -15,18 +22,18 @@ class CarrosActivity : AppCompatActivity() {
 
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
+
+        // Init Views
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.itemAnimator = DefaultItemAnimator()
     }
 
-    /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+    override fun onResume() {
+        super.onResume()
+
+        val carros = CarroService.getCarros(this, TipoCarro.Classicos)
+        recyclerView.adapter = CarroAdapter(carros) { c ->
+            toast("Carro ${c.nome}")
         }
-    }*/
+    }
 }

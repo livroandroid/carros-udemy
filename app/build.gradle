@@ -35,4 +35,7 @@ dependencies {
 
     // Anko Commons
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
+
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
