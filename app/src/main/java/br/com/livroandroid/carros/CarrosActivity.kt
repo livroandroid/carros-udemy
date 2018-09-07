@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.livroandroid.carros.adapter.CarroAdapter
 import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.TipoCarro
+import br.com.livroandroid.carros.fragments.CarrosFragment
 import kotlinx.android.synthetic.main.activity_carros.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import org.jetbrains.anko.startActivity
@@ -29,21 +30,17 @@ class CarrosActivity : AppCompatActivity() {
         tipo = intent.getSerializableExtra("tipo") as TipoCarro
         actionBar?.title = getString(tipo.string)
 
-        // Init Views
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.itemAnimator = DefaultItemAnimator()
-    }
+        if(savedInstanceState == null) {
+            val frag = CarrosFragment()
+            frag.arguments = intent.extras
 
-    override fun onPause() {
-        super.onPause()
-    }
+            val t = supportFragmentManager.beginTransaction()
+            t.add(R.id.fragment, frag)
+            t.commit()
 
-    override fun onResume() {
-        super.onResume()
 
-        val carros = CarroService.getCarros(this, tipo)
-        recyclerView.adapter = CarroAdapter(carros) { c ->
-            startActivity<CarroActivity>("carro" to c)
         }
     }
+
+
 }

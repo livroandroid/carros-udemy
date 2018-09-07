@@ -39,3 +39,7 @@
 * 07-parcelable
 
     - Explicado a interface Parcelable
+
+* 08-fragments
+
+    - Criada a classe CarrosFragment com o componente com a lista de carros
