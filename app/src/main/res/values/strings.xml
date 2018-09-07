@@ -73,6 +73,7 @@ Versao %s<br><br>
     <!-- V -->
     <string name="vazio" />
     <string name="video">Vídeo</string>
+    <string name="content_description">Descricao Imagem</string>
 
 
 </resources>

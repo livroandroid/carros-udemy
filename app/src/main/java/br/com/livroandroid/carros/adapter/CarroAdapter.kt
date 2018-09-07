@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.domain.Carro
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.adapter_carro.view.*
 
 // Define o construtor que recebe (carros,onClick)
 class CarroAdapter (
@@ -20,8 +21,7 @@ class CarroAdapter (
     override fun getItemCount() = this.carros.size
 
     class CarrosViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var tNome: TextView = view.findViewById(R.id.text)
-        var img: ImageView = view.findViewById(R.id.img)
+
     }
 
     // Infla o layout do adapter e retorna o ViewHolder
@@ -34,18 +34,21 @@ class CarroAdapter (
 
     // Faz o bind para atualizar o valor das views com os dados do Carro
     override fun onBindViewHolder(holder: CarrosViewHolder, position: Int) {
-        val context = holder.itemView.context
+
+        val view = holder.itemView
 
         // Atualiza os dados do carro
-
         val carro = carros[position]
-        holder.tNome.text = carro.nome
 
-        //Picasso.with(context).load(carro.urlFoto).into(holder.img)
+        with(carro) {
+            view.textView.text = nome
 
-        Picasso.with(context).load(carro.urlFoto).into(holder.img)
+            Picasso.get().load(urlFoto).into(view.img)
 
-        // Adiciona o evento de clique na linha
-        holder.itemView.setOnClickListener { onClick(carro) }
+            // Adiciona o evento de clique na linha
+            view.setOnClickListener { onClick(this) }
+        }
+
+
     }
 }

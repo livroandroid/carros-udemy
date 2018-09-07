@@ -1,15 +1,16 @@
 package br.com.livroandroid.carros
 
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.livroandroid.carros.adapter.CarroAdapter
 import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.TipoCarro
+import br.com.livroandroid.carros.fragments.CarrosFragment
 import kotlinx.android.synthetic.main.activity_carros.*
 import kotlinx.android.synthetic.main.include_toolbar.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class CarrosActivity : AppCompatActivity() {
@@ -26,22 +27,20 @@ class CarrosActivity : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // Params
         tipo = intent.getSerializableExtra("tipo") as TipoCarro
         actionBar?.title = getString(tipo.string)
 
-        // Init views
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.itemAnimator = DefaultItemAnimator()
-    }
+        if(savedInstanceState == null) {
+            val frag = CarrosFragment()
+            frag.arguments = intent.extras
 
-    override fun onResume() {
-        super.onResume()
+            val t = supportFragmentManager.beginTransaction()
+            t.add(R.id.fragment, frag)
+            t.commit()
 
-        val carros = CarroService.getCarros(this,tipo)
 
-        recyclerView.adapter = CarroAdapter(carros) { carro ->
-            toast("Carro ${carro.nome}")
         }
     }
+
+
 }

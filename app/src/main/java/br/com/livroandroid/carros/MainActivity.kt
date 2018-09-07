@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener {view ->
             Snackbar.make(view, "Teste", Snackbar.LENGTH_LONG)
                     .setAction("OK", null).show()
         }
@@ -80,13 +80,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 toast("Carros")
             }
             R.id.nav_item_carros_classicos -> {
+                /*val intent = Intent(this,CarrosActivity::class.java)
+                val bundle = Bundle()
+                bundle.putSerializable("tipo",TipoCarro.Classicos)
+                intent.putExtras(bundle)
+                startActivity(intent)*/
+
                 startActivity<CarrosActivity>("tipo" to TipoCarro.Classicos)
             }
             R.id.nav_item_carros_esportivos -> {
                 startActivity<CarrosActivity>("tipo" to TipoCarro.Esportivos)
+
             }
             R.id.nav_item_carros_luxo -> {
                 startActivity<CarrosActivity>("tipo" to TipoCarro.Luxo)
+
             }
             R.id.nav_item_site_livro -> {
                 toast("Site Livro")
