@@ -35,3 +35,7 @@
 
     - Criada a activity CarroActivity com o layout dos detalhes do carro
     - Feito a navegação de tela ao clicar no carro dentro da lista
+
+* 07-parcelable
+
+    - Explicado a interface Parcelable

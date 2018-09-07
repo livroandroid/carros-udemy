@@ -13,7 +13,7 @@ class CarroActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carro)
 
-        val c = intent.getSerializableExtra("carro") as Carro
+        val c = intent.getParcelableExtra("carro") as Carro
 
         textView.text = c.nome
         supportActionBar?.title = c.nome
