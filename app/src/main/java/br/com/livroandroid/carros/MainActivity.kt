@@ -7,10 +7,13 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import br.com.livroandroid.carros.domain.TipoCarro
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.include_toolbar.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -22,9 +25,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener {
-            val intent = Intent(this,CarrosActivity::class.java)
-            startActivity(intent)
+        fab.setOnClickListener {view ->
+            Snackbar.make(view, "Teste", Snackbar.LENGTH_LONG)
+                    .setAction("OK", null).show()
         }
 
         val toggle = ActionBarDrawerToggle(
@@ -76,14 +79,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_item_carros_todos -> {
                 toast("Carros")
             }
-            R.id.nav_item_carros_esportivos -> {
-                toast("Esportivos")
-            }
             R.id.nav_item_carros_classicos -> {
-                toast("Classicos")
+                /*val intent = Intent(this,CarrosActivity::class.java)
+                val bundle = Bundle()
+                bundle.putSerializable("tipo",TipoCarro.Classicos)
+                intent.putExtras(bundle)
+                startActivity(intent)*/
+
+                startActivity<CarrosActivity>("tipo" to TipoCarro.Classicos)
+            }
+            R.id.nav_item_carros_esportivos -> {
+                startActivity<CarrosActivity>("tipo" to TipoCarro.Esportivos)
+
             }
             R.id.nav_item_carros_luxo -> {
-                toast("Luxo")
+                startActivity<CarrosActivity>("tipo" to TipoCarro.Luxo)
+
             }
             R.id.nav_item_site_livro -> {
                 toast("Site Livro")

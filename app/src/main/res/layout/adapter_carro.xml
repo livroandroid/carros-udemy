@@ -14,7 +14,7 @@
         android:contentDescription="@string/content_description" />
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
