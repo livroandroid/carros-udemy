@@ -27,7 +27,9 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <activity android:name=".CarroActivity" android:parentActivityName=".CarrosActivity" />
+        <activity
+            android:name=".CarroActivity"
+            android:parentActivityName=".CarrosActivity" />
     </application>
 
 </manifest>

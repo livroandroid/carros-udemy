@@ -43,3 +43,7 @@
 * 08-fragments
 
     - Criada a classe CarrosFragment com o componente com a lista de carros
+
+* 09-tabs
+
+    - Criada a Tab com os 3 tipos de carros (Clássicos, Esportivos, Luxo)
