@@ -53,3 +53,12 @@
     - Criada a WebViewActivity para carregar uma página da internet
     - Exemplo com ProgressBar
     - Mostrado o gesto de "pull to refresh" com SwipeRefreshLayout
+
+* 11-cardview
+
+    - Adicionado um CardView na lista de carros
+
+* 12-xml
+
+    - Parser de XML
+    - A lista de carros será criada a partir de um XML embarcado no app

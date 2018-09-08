@@ -10,6 +10,7 @@ import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.domain.Carro
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.adapter_carro.view.*
+import kotlinx.android.synthetic.main.include_progress.view.*
 
 // Define o construtor que recebe (carros,onClick)
 class CarroAdapter (
@@ -43,7 +44,7 @@ class CarroAdapter (
         with(carro) {
             view.textView.text = nome
 
-            Picasso.get().load(urlFoto).into(view.img)
+            Picasso.get().load(urlFoto).placeholder(R.mipmap.ic_launcher).into(view.img)
 
             // Adiciona o evento de clique na linha
             view.setOnClickListener { onClick(this) }
