@@ -16,7 +16,8 @@ class CarroActivity : BaseActivity() {
 
         val c = intent.getParcelableExtra("carro") as Carro
 
-        textView.text = c.nome
+        tNome.text = c.nome
+        tDesc.text = c.desc
         supportActionBar?.title = c.nome
 
         Picasso.get().load(c.urlFoto).into(img)

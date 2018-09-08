@@ -44,7 +44,7 @@ class CarroAdapter (
         with(carro) {
             view.textView.text = nome
 
-            Picasso.get().load(urlFoto).placeholder(R.mipmap.ic_launcher).into(view.img)
+            Picasso.get().load(urlFoto).into(view.img)
 
             // Adiciona o evento de clique na linha
             view.setOnClickListener { onClick(this) }
