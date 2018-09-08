@@ -70,3 +70,7 @@
     - Parser de JSON
     - Foi utilizado a lib GSON para o parser
     - Foi usado uma extensão para facilitar o parser de JSON
+
+* 14-picasso-extension
+
+    - Mostrado a "extension" para utilizar a lib Picasso
