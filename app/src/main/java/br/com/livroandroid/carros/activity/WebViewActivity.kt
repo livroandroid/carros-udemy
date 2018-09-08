@@ -2,7 +2,6 @@ package br.com.livroandroid.carros.activity
 
 import android.graphics.Bitmap
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebResourceRequest
@@ -13,8 +12,8 @@ import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.activity.dialog.AboutDialog
 import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.include_progress.*
-import org.jetbrains.anko.toast
 
+@Suppress("DEPRECATION")
 class WebViewActivity : BaseActivity() {
     private val url = "http://www.livroandroid.com.br/sobre.htm"
 
@@ -25,6 +24,15 @@ class WebViewActivity : BaseActivity() {
         webview.loadUrl(url)
 
         initWebViewClient()
+
+        // Swipe to Refresh
+        swipeToRefresh.setOnRefreshListener {
+            webview.reload()
+        }
+        swipeToRefresh.setColorSchemeResources(
+                R.color.refresh_progress_1,
+                R.color.refresh_progress_2,
+                R.color.refresh_progress_3)
     }
 
     private fun initWebViewClient() {
@@ -32,7 +40,9 @@ class WebViewActivity : BaseActivity() {
             override fun onPageStarted(webview: WebView, url: String, favicon: Bitmap?) {
                 super.onPageStarted(webview, url, favicon)
                 // Liga o progress
-                progress.visibility = View.VISIBLE
+                if(!swipeToRefresh.isRefreshing) {
+                    progress.visibility = View.VISIBLE
+                }
             }
 
             override fun onPageFinished(webview: WebView, url: String) {
