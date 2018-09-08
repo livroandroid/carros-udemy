@@ -1,10 +1,9 @@
 package br.com.livroandroid.carros.domain
 
 import android.content.Context
-import android.util.Log
 import br.com.livroandroid.carros.R
-import br.com.livroandroid.carros.extensions.getText
-import br.com.livroandroid.carros.extensions.getXml
+import br.com.livroandroid.carros.extensions.fromJson
+import com.google.gson.Gson
 
 class CarroService {
     companion object {
@@ -19,8 +18,8 @@ class CarroService {
             val inputStream = resources.openRawResource(raw)
             inputStream.bufferedReader().use {
                 // Lê o XML e cria a lista de carros
-                val xml = it.readText()
-                return parserXML(xml)
+                val json = it.readText()
+                return fromJson(json)
             }
         }
 
@@ -32,7 +31,7 @@ class CarroService {
         }
 
         // Lê o XML e cria a lista de carros
-        private fun parserXML(xmlString: String): List<Carro> {
+        /*private fun parserXML(xmlString: String): List<Carro> {
             val carros = mutableListOf<Carro>()
             val xml = xmlString.getXml()
             // Lê todas as tags <carro>
@@ -48,7 +47,7 @@ class CarroService {
             }
             Log.d(TAG, "${carros.size} carros encontrados.")
             return carros
-        }
+        }*/
 
     }
 }

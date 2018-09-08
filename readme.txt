@@ -62,3 +62,11 @@
 
     - Parser de XML
     - A lista de carros será criada a partir de um XML embarcado no app
+    - Foi usado uma extensão para facilitar o parser de XML
+    - Adicionado a descrição do carro na tela de detalhes e mostrado o ScrollView
+
+* 13-json
+
+    - Parser de JSON
+    - Foi utilizado a lib GSON para o parser
+    - Foi usado uma extensão para facilitar o parser de JSON

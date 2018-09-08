@@ -2,15 +2,23 @@ package br.com.livroandroid.carros.domain
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 
 class Carro() : Parcelable {
     var id:Long = 0
     var tipo = ""
     var nome = ""
     var desc = ""
+
+    @SerializedName("url_foto")
     var urlFoto = ""
+
+    @SerializedName("url_info")
     var urlInfo = ""
+
+    @SerializedName("url_video")
     var urlVideo = ""
+
     var latitude = ""
     var longitude = ""
 

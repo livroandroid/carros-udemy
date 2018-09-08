@@ -43,4 +43,6 @@ dependencies {
     // Anko Commons
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
 
+    // Google GSON
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
