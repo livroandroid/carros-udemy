@@ -21,13 +21,13 @@ class WebViewActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
 
-        webview.loadUrl(url)
+        webView.loadUrl(url)
 
         initWebViewClient()
 
         // Swipe to Refresh
         swipeToRefresh.setOnRefreshListener {
-            webview.reload()
+            webView.reload()
         }
         swipeToRefresh.setColorSchemeResources(
                 R.color.refresh_progress_1,
@@ -36,7 +36,7 @@ class WebViewActivity : BaseActivity() {
     }
 
     private fun initWebViewClient() {
-        webview.webViewClient = object : WebViewClient() {
+        webView.webViewClient = object : WebViewClient() {
             override fun onPageStarted(webview: WebView, url: String, favicon: Bitmap?) {
                 super.onPageStarted(webview, url, favicon)
                 // Liga o progress
