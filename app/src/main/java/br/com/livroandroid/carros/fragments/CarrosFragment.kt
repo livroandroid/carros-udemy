@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.livroandroid.carros.CarroActivity
+import br.com.livroandroid.carros.activity.CarroActivity
 
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.adapter.CarroAdapter

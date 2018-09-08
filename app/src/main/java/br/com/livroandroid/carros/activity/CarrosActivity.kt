@@ -1,19 +1,13 @@
-package br.com.livroandroid.carros
+package br.com.livroandroid.carros.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.livroandroid.carros.adapter.CarroAdapter
-import br.com.livroandroid.carros.domain.CarroService
+import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.fragments.CarrosFragment
-import kotlinx.android.synthetic.main.activity_carros.*
 import kotlinx.android.synthetic.main.include_toolbar.*
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 
-class CarrosActivity : AppCompatActivity() {
+class CarrosActivity : BaseActivity() {
 
     private lateinit var tipo: TipoCarro
 
