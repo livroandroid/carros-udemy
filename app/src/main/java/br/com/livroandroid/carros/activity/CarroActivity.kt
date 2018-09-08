@@ -1,13 +1,14 @@
-package br.com.livroandroid.carros
+package br.com.livroandroid.carros.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.domain.Carro
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_carro.*
 
-class CarroActivity : AppCompatActivity() {
+class CarroActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

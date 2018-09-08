@@ -43,3 +43,9 @@
 * 08-fragments
 
     - Criada a classe CarrosFragment com o componente com a lista de carros
+
+* 09-webview
+
+    - Criada a WebViewActivity para carregar uma página da internet
+    - Exemplo com ProgressBar
+    - Mostrado o gesto de "pull to refresh" com SwipeRefreshLayout
