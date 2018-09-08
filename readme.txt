@@ -70,3 +70,8 @@
     - Parser de JSON
     - Foi utilizado a lib GSON para o parser
     - Foi usado uma extensão para facilitar o parser de JSON
+
+* 14-threads
+
+    - Alterado para buscar os carros de um web service
+    - Explicado como utilizar o básico de threads e UI Thread
