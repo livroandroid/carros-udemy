@@ -2,7 +2,6 @@ package br.com.livroandroid.carros.fragments
 
 
 import android.os.Bundle
-import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -44,22 +43,9 @@ class CarrosFragment : BaseFragment() {
     override fun onResume() {
         super.onResume()
 
-        taskCarros()
-    }
-
-    private fun taskCarros() {
-        val t = Thread {
-            val carros = CarroService.getCarros(context, tipo)
-
-            activity?.runOnUiThread {
-                recyclerView.adapter = CarroAdapter(carros) { c ->
-                    activity?.startActivity<CarroActivity>("carro" to c)
-                }
-            }
+        val carros = CarroService.getCarros(context, tipo)
+        recyclerView.adapter = CarroAdapter(carros) { c ->
+            activity?.startActivity<CarroActivity>("carro" to c)
         }
-        t.start()
-
-
     }
-
 }

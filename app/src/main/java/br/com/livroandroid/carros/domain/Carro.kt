@@ -10,8 +10,13 @@ class Carro() : Parcelable {
     var nome = ""
     var desc = ""
 
+    @SerializedName("url_foto")
     var urlFoto = ""
+
+    @SerializedName("url_info")
     var urlInfo = ""
+
+    @SerializedName("url_video")
     var urlVideo = ""
 
     var latitude = ""

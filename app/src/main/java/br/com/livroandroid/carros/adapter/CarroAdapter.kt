@@ -44,11 +44,7 @@ class CarroAdapter (
         with(carro) {
             view.textView.text = nome
 
-            if(urlFoto.isNotEmpty()) {
-                Picasso.get().load(urlFoto).into(view.img)
-            } else {
-                view.img.setImageResource(R.drawable.ic_drawer_carro)
-            }
+            Picasso.get().load(urlFoto).into(view.img)
 
             // Adiciona o evento de clique na linha
             view.setOnClickListener { onClick(this) }
