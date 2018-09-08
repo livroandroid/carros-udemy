@@ -6,12 +6,12 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import br.com.livroandroid.carros.adapter.TabsAdapter
 import br.com.livroandroid.carros.domain.TipoCarro
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -25,17 +25,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener {view ->
-            Snackbar.make(view, "Teste", Snackbar.LENGTH_LONG)
-                    .setAction("OK", null).show()
-        }
+        initNavDrawer()
+        initViewPagerTabs()
+    }
 
+    private fun initNavDrawer() {
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-
         nav_view.setNavigationItemSelectedListener(this)
+    }
+
+    private fun initViewPagerTabs() {
+        viewPager.offscreenPageLimit = 2
+        viewPager.adapter = TabsAdapter(this, supportFragmentManager)
+        tabLayout.setupWithViewPager(viewPager)
+        // Cor branca no texto (a cor de fundo é definido no layout)
+        val cor = ContextCompat.getColor(this, R.color.white)
+        tabLayout.setTabTextColors(cor, cor)
     }
 
     override fun onBackPressed() {

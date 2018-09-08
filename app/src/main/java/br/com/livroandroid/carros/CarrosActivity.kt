@@ -37,10 +37,6 @@ class CarrosActivity : AppCompatActivity() {
             val t = supportFragmentManager.beginTransaction()
             t.add(R.id.fragment, frag)
             t.commit()
-
-
         }
     }
-
-
 }
