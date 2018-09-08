@@ -46,12 +46,10 @@ class CarroAdapter (
             view.textView.text = nome
 
             //Picasso.get().load(urlFoto).into(view.img)
-            view.img.loadUrl(urlFoto)
+            view.img.loadUrl(urlFoto, view.progress)
 
             // Adiciona o evento de clique na linha
             view.setOnClickListener { onClick(this) }
         }
-
-
     }
 }

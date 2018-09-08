@@ -26,13 +26,22 @@
             tools:text="@string/nome"/>
 
         <!-- Foto do carro -->
-        <ImageView
-            android:id="@+id/img"
+        <FrameLayout
             android:layout_width="260dp"
-            android:layout_height="110dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="6dp"
-            android:contentDescription="@string/content_description"
-            tools:src="@mipmap/ic_launcher"/>
+            android:layout_height="110dp">
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="260dp"
+                android:layout_height="110dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="6dp"
+                android:contentDescription="@string/content_description"
+                tools:src="@mipmap/ic_launcher"/>
+
+            <include layout="@layout/include_progress" />
+
+        </FrameLayout>
+
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>
