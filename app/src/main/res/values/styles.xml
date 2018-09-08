@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- Cor para o efeito ripple -->
+        <item name="colorControlHighlight">@color/control_highlight</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

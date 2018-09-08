@@ -47,3 +47,14 @@
 * 09-tabs
 
     - Criada a Tab com os 3 tipos de carros (Clássicos, Esportivos, Luxo)
+
+* 10-webview
+
+    - Criada a WebViewActivity para carregar uma página da internet
+    - Exemplo com ProgressBar
+    - Mostrado o gesto de "pull to refresh" com SwipeRefreshLayout
+
+* 11-cardview
+
+    - Alterado o layout do adapter para utilizar CardView
+    - Mostrado o efeito Ripple
