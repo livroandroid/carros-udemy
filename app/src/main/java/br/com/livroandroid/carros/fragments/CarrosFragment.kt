@@ -64,10 +64,10 @@ class CarrosFragment : BaseFragment() {
 
     private fun taskCarros(refresh: Boolean = false) {
 
-        if(! isNetworkAvailable()) {
-            handleError(null)
-            return
-        }
+//        if(! isNetworkAvailable()) {
+//            handleError(null)
+//            return
+//        }
 
         invisible(tError)
         visible(recyclerView)
