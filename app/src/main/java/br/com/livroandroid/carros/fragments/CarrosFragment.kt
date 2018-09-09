@@ -43,9 +43,15 @@ class CarrosFragment : BaseFragment() {
     override fun onResume() {
         super.onResume()
 
-        val carros = CarroService.getCarros(context, tipo)
-        recyclerView.adapter = CarroAdapter(carros) { c ->
-            activity?.startActivity<CarroActivity>("carro" to c)
+        val t = Thread {
+            val carros = CarroService.getCarros(context, tipo)
+
+            activity?.runOnUiThread {
+                recyclerView.adapter = CarroAdapter(carros) { c ->
+                    activity?.startActivity<CarroActivity>("carro" to c)
+                }
+            }
         }
+        t.start()
     }
 }
