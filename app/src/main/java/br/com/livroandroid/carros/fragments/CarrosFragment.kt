@@ -48,7 +48,7 @@ class CarrosFragment : BaseFragment() {
         recyclerView.itemAnimator = DefaultItemAnimator()
 
         swipeToRefresh.setOnRefreshListener {
-            taskCarros()
+            taskCarros(true)
         }
         swipeToRefresh.setColorSchemeResources(
                 R.color.refresh_progress_1,
@@ -62,7 +62,7 @@ class CarrosFragment : BaseFragment() {
         taskCarros()
     }
 
-    private fun taskCarros() {
+    private fun taskCarros(refresh: Boolean = false) {
 
         if(! isNetworkAvailable()) {
             handleError(null)
@@ -77,7 +77,7 @@ class CarrosFragment : BaseFragment() {
 
         doAsync(exceptionHandler = { e -> handleError(e)}) {
 
-            val carros = CarroService.getCarros(context, tipo)
+            val carros = CarroService.getCarros(context, tipo, refresh)
 
             uiThread {
                 recyclerView.adapter = CarroAdapter(carros) { c ->
