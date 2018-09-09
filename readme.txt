@@ -84,3 +84,7 @@
 
     - Tratamento de exceções
     - Verificar se existe internet
+
+* 17-anko-thread
+
+    - Alterado para utilizar a extensões doAsync e uiThread da lib Anko
