@@ -80,11 +80,8 @@
 
     - Mostrado a "extension" para utilizar a lib Picasso
 
-* 16-anko-thread
+* 16-anko-thread-exceptions
 
     - Alterado para utilizar a extensões doAsync e uiThread da lib Anko
-
-* 17-exceptions
-
     - Tratamento de exceções
     - Verificar se existe internet
