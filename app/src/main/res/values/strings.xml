@@ -43,6 +43,7 @@ Versao %s<br><br>
     <string name="latitudeLongitude">Lat / Lng</string>
 
     <!-- M -->
+    <string name="msg_internet_indisponivel">Internet indisponível. Verifique sua conexão e tente novamente.</string>
     <string name="mapa">Mapa</string>
     <string name="msg_carro_favoritado">Carro adicionado aos favoritado.</string>
     <string name="msg_carro_desfavoritado">Carro removido do favoritados.</string>

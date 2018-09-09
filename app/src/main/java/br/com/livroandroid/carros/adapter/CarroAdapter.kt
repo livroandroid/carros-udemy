@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.domain.Carro
+import br.com.livroandroid.carros.extensions.loadUrl
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.adapter_carro.view.*
 import kotlinx.android.synthetic.main.include_progress.view.*
@@ -44,7 +45,7 @@ class CarroAdapter (
         with(carro) {
             view.textView.text = nome
 
-            Picasso.get().load(urlFoto).into(view.img)
+            view.img.loadUrl(urlFoto, view.progress)
 
             // Adiciona o evento de clique na linha
             view.setOnClickListener { onClick(this) }
