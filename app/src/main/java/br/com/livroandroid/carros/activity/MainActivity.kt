@@ -120,7 +120,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 startActivity<WebViewActivity>()
             }
             R.id.nav_item_settings -> {
-                toast("Config")
+                startActivity<PreferencesActivity>()
             }
         }
 

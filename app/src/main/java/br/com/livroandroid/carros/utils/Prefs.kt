@@ -1,7 +1,10 @@
 package br.com.livroandroid.carros.utils
 
+import android.content.Context
 import android.content.SharedPreferences
+import android.preference.PreferenceManager
 import br.com.livroandroid.carros.CarrosApplication
+import br.com.livroandroid.carros.R
 import java.lang.reflect.Array.setInt
 
 class Prefs {
@@ -26,5 +29,12 @@ class Prefs {
         var lastTabIdx: Int
             get() = getInt("tabIdx")
             set(value) = putInt("tabIdx", value)
+
+        fun isCacheOn(): Boolean {
+            val context = CarrosApplication.getInstance().applicationContext
+            val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+            val key = context.getString(R.string.key_fazer_cache)
+            return prefs.getBoolean(key, false)
+        }
     }
 }

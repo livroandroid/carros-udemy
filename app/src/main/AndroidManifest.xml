@@ -32,9 +32,12 @@
         <activity
             android:name=".activity.CarroActivity"
             android:parentActivityName=".activity.CarrosActivity" />
-
-        <activity android:name=".activity.WebViewActivity"
+        <activity
+            android:name=".activity.WebViewActivity"
             android:label="@string/site_do_livro"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.PreferencesActivity"
             android:parentActivityName=".activity.MainActivity" />
     </application>
 

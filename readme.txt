@@ -89,3 +89,7 @@
 * 17-prefs
 
     - Mostrado como usar a SharedPreferences para salvar dados simples de chave e valor
+
+*  18-config
+
+    - Mostrado como criar telas de configurações no Android

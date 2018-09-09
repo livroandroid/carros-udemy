@@ -9,7 +9,6 @@ import java.net.URL
 
 class CarroService {
     companion object {
-        private const val TAG = "livro"
 
         private const val BASE_URL = "http://livrowebservices.com.br/rest/carros"
 
@@ -17,8 +16,10 @@ class CarroService {
         fun getCarros(context: Context, tipo: TipoCarro, refresh: Boolean = false): List<Carro> {
             val url = "$BASE_URL/tipo/${tipo.name.toLowerCase()}"
 
+            val cache = Prefs.isCacheOn()
+
             // Tenta buscar do banco
-            if(!refresh) {
+            if(cache && !refresh) {
                 val json = Prefs.getString(url)
                 if(! json.isEmpty()) {
                     return fromJson(json)

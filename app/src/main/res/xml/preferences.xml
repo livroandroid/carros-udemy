@@ -1,0 +1,11 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Livro Android">
+        <CheckBoxPreference
+            android:key="@string/key_fazer_cache"
+            android:summary="@string/fazer_cache"
+            android:title="@string/cache" />
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
