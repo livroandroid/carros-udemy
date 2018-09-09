@@ -65,7 +65,7 @@ class CarrosFragment : BaseFragment() {
     private fun taskCarros() {
 
         if(! isNetworkAvailable()) {
-            toast(R.string.msg_internet_indisponivel)
+            handleError(null)
             return
         }
 
@@ -91,13 +91,15 @@ class CarrosFragment : BaseFragment() {
         }
     }
 
-    private fun handleError(e: Throwable) {
+    private fun handleError(e: Throwable?) {
         runOnUiThread {
             visible(tError)
             invisible(recyclerView, progress)
             swipeToRefresh.isRefreshing = false
-            Log.e("carros","Erro ${e.message}", e)
-            toast("Erro ${e.message}")
+            if(e != null) {
+                Log.e("carros","Erro ${e.message}", e)
+                toast("Erro ${e.message}")
+            }
         }
     }
 }
