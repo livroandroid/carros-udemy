@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.viewpager.widget.ViewPager
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.adapter.TabsAdapter
 import br.com.livroandroid.carros.domain.TipoCarro
+import br.com.livroandroid.carros.utils.Prefs
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.include_toolbar.*
@@ -44,6 +45,18 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         // Cor branca no texto (a cor de fundo é definido no layout)
         val cor = ContextCompat.getColor(this, R.color.white)
         tabLayout.setTabTextColors(cor, cor)
+
+        // Salva e Recupera a última Tab acessada.
+        val tabIdx = Prefs.lastTabIdx
+        viewPager.currentItem = tabIdx
+        viewPager.addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(p: Int) { }
+            override fun onPageScrolled(p: Int, p1: Float, p2: Int) { }
+            override fun onPageSelected(page: Int) {
+                // Salva o índice da página/tab selecionada
+                Prefs.lastTabIdx = page
+            }
+        })
     }
 
     override fun onBackPressed() {

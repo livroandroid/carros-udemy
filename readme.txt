@@ -85,3 +85,7 @@
     - Alterado para utilizar a extensões doAsync e uiThread da lib Anko
     - Tratamento de exceções
     - Verificar se existe internet
+
+* 17-prefs
+
+    - Mostrado como usar a SharedPreferences para salvar dados simples de chave e valor
