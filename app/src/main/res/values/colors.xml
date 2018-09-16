@@ -13,7 +13,9 @@
     <color name="red">#f00</color>
     <color name="green">#0f0</color>
     <color name="yellow">#fff000</color>
-    <color name="gray">#cccccc</color>
+    <color name="gray3">#cccccc</color>
+    <color name="gray2">#dddddd</color>
+    <color name="gray1">#eeeeee</color>
 
     <!-- SwipeRefreshLayout -->
     <!-- azul -->
@@ -24,7 +26,9 @@
     <color name="refresh_progress_3">#CC0000</color>
 
     <!-- Favoritos -->
-    <color name="favorito_on">#E91E63</color>
-    <color name="favorito_off">#cccccc</color>
+    <color name="favorito_background_on">@color/colorAccent</color>
+    <color name="favorito_tint_on">@color/yellow</color>
+    <color name="favorito_background_off">@color/gray1</color>
+    <color name="favorito_tint_off">@color/gray3</color>
 
 </resources>

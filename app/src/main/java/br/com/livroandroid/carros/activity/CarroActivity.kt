@@ -1,33 +1,88 @@
 package br.com.livroandroid.carros.activity
 
+import android.content.res.ColorStateList
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
+import androidx.core.content.ContextCompat
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.domain.Carro
+import br.com.livroandroid.carros.domain.FavoritosService
+import br.com.livroandroid.carros.extensions.toast
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_carro.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
-class CarroActivity : BaseActivity() {
+class CarroActivity : BaseActivity {
+
+    private lateinit var carro: Carro
+
+    constructor() : super()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carro)
 
-        val c = intent.getParcelableExtra("carro") as Carro
+        carro = intent.getParcelableExtra("carro") as Carro
 
-        tNome.text = c.nome
-        tDesc.text = c.desc
-        supportActionBar?.title = c.nome
+        with(carro) {
+            tNome.text = nome
+            tDesc.text = desc
+            supportActionBar?.title = nome
+            Picasso.get().load(urlFoto).into(img)
+        }
 
-        Picasso.get().load(c.urlFoto).into(img)
+        fab.setOnClickListener { onClickFavoritar() }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if(item?.itemId == android.R.id.home) {
+    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_carro, menu)
+        return super.onCreateOptionsMenu(menu)
+    }*/
+
+    override fun onOptionsItemSelected(item: MenuItem?) = when(item?.itemId) {
+        android.R.id.home -> {
             finish()
-            return true
+            true
+        } R.id.action_favoritar -> {
+            onClickFavoritar()
+            true
+        } else -> {
+            super.onOptionsItemSelected(item)
         }
-        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        doAsync {
+            val favoritado = FavoritosService.isFavorito(carro)
+
+            uiThread { setFavoriteColor(favoritado) }
+        }
+    }
+
+    private fun onClickFavoritar() {
+        doAsync {
+            val favoritado = FavoritosService.favoritar(carro)
+
+            uiThread {
+                toast(if (favoritado) R.string.msg_carro_favoritado else R.string.msg_carro_desfavoritado)
+
+                // Atualiza cor do botão FAB
+                setFavoriteColor(favoritado)
+            }
+        }
+    }
+
+    // Desenha a cor do FAB conforme está favoritado ou não.
+    private fun setFavoriteColor(favorito: Boolean) {
+        // Troca a cor conforme o status do favoritos
+        val fundo = ContextCompat.getColor(this, if (favorito) R.color.favorito_background_on else R.color.favorito_background_off)
+        val cor = ContextCompat.getColor(this, if (favorito) R.color.favorito_tint_on else R.color.favorito_tint_off)
+        fab.backgroundTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(fundo))
+        fab.setColorFilter(cor)
     }
 }

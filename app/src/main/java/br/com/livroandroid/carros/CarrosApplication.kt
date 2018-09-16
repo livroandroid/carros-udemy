@@ -1,6 +1,7 @@
 package br.com.livroandroid.carros
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import java.lang.IllegalStateException
 
@@ -28,6 +29,10 @@ class CarrosApplication : Application() {
                 throw IllegalStateException("Configure a classe de Application no AndroidManifest.xml")
             }
             return appInstance!!
+        }
+
+        fun getContext(): Context {
+            return getInstance().applicationContext
         }
     }
 

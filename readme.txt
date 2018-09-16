@@ -93,3 +93,10 @@
 *  18-config
 
     - Mostrado como criar telas de configurações no Android
+
+* 19-room
+
+    - Criada a 4a tab do aplicativo chamada Favoritos
+    - Vamos salvar os carros no banco de dados com a lib Room
+    - Os carros salvos vão aparecer na tab de Favoritos
+
