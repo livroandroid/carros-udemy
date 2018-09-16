@@ -1,10 +1,8 @@
 package br.com.livroandroid.carros.activity
 
-import android.content.Context
 import android.os.Bundle
-import android.preference.PreferenceManager
-import br.com.livroandroid.carros.R
 import androidx.preference.PreferenceFragmentCompat
+import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.extensions.toast
 import br.com.livroandroid.carros.utils.Prefs
 
