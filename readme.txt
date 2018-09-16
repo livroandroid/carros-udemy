@@ -100,3 +100,6 @@
     - Vamos salvar os carros no banco de dados com a lib Room
     - Os carros salvos vão aparecer na tab de Favoritos
 
+* 20-bus
+
+    - Aprenda a usar Bus de Eventos

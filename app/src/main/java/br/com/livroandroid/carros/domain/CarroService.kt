@@ -1,6 +1,7 @@
 package br.com.livroandroid.carros.domain
 
 import android.content.Context
+import android.util.Log
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.extensions.fromJson
 import br.com.livroandroid.carros.utils.Prefs
