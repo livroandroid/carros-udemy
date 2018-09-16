@@ -80,7 +80,7 @@ class CarrosFragment : BaseFragment() {
             val carros = CarroService.getCarros(context, tipo, refresh)
 
             uiThread {
-                recyclerView.adapter = CarroAdapter(carros) { c ->
+                recyclerView?.adapter = CarroAdapter(carros) { c ->
                     activity?.startActivity<CarroActivity>("carro" to c)
                 }
 
