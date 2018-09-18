@@ -14,11 +14,14 @@ import br.com.livroandroid.carros.adapter.CarroAdapter
 import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.FavoritosService
 import br.com.livroandroid.carros.domain.TipoCarro
+import br.com.livroandroid.carros.domain.event.FavoritoEvent
 import br.com.livroandroid.carros.extensions.*
 import kotlinx.android.synthetic.main.adapter_carro.*
 
 import kotlinx.android.synthetic.main.fragment_carros.*
 import kotlinx.android.synthetic.main.include_progress.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 import org.jetbrains.anko.custom.onUiThread
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
@@ -34,6 +37,9 @@ class FavoritosFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
 
         setHasOptionsMenu(true)
+
+        // Registra para receber os eventos do bus
+        EventBus.getDefault().register(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -97,5 +103,18 @@ class FavoritosFragment : BaseFragment() {
             }
 
         }
+    }
+
+    @Subscribe
+    fun onBusFavoritos(event: FavoritoEvent) {
+        // Recebe o evento e atualiza os favoritos
+        taskCarros()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // Cancela os eventos do bus
+        EventBus.getDefault().unregister(this)
     }
 }

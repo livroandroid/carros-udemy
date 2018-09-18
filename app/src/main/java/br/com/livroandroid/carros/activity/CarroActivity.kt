@@ -9,9 +9,11 @@ import androidx.core.content.ContextCompat
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.domain.Carro
 import br.com.livroandroid.carros.domain.FavoritosService
+import br.com.livroandroid.carros.domain.event.FavoritoEvent
 import br.com.livroandroid.carros.extensions.toast
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_carro.*
+import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -73,6 +75,9 @@ class CarroActivity : BaseActivity {
 
                 // Atualiza cor do botão FAB
                 setFavoriteColor(favoritado)
+
+                // Dispara o evento
+                //EventBus.getDefault().post(FavoritoEvent(carro))
             }
         }
     }
