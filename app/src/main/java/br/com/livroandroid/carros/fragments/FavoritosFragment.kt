@@ -3,10 +3,8 @@ package br.com.livroandroid.carros.fragments
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.livroandroid.carros.activity.CarroActivity
@@ -32,6 +30,12 @@ import org.jetbrains.anko.uiThread
  */
 class FavoritosFragment : BaseFragment() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_favoritos, container, false)
@@ -45,7 +49,7 @@ class FavoritosFragment : BaseFragment() {
         recyclerView.itemAnimator = DefaultItemAnimator()
 
         swipeToRefresh.setOnRefreshListener {
-            taskCarros(true)
+            taskCarros()
         }
         swipeToRefresh.setColorSchemeResources(
                 R.color.refresh_progress_1,
@@ -53,13 +57,27 @@ class FavoritosFragment : BaseFragment() {
                 R.color.refresh_progress_3)
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
         taskCarros()
     }
 
-    private fun taskCarros(refresh: Boolean = false) {
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.menu_fragment_carros, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_refresh -> {
+                taskCarros()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun taskCarros() {
 
         if(!swipeToRefresh.isRefreshing) {
             visible(progress)

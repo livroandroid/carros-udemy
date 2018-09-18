@@ -100,6 +100,12 @@
     - Vamos salvar os carros no banco de dados com a lib Room
     - Os carros salvos vão aparecer na tab de Favoritos
 
-* 20-bus
+* 20-fragments
+
+    - Dicas sobre ciclo de vida do fragment
+    - onResume vs onActivityCreated
+    - Adicionando botões na Action Bar
+
+* 21-bus
 
     - Aprenda a usar Bus de Eventos

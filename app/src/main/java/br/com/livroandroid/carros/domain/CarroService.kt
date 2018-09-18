@@ -10,12 +10,15 @@ import java.net.URL
 
 class CarroService {
     companion object {
+        private const val TAG = "carros"
 
         private const val BASE_URL = "http://livrowebservices.com.br/rest/carros"
 
         // Busca os carros por tipo (clássicos, esportivos ou luxo)
-        fun getCarros(context: Context, tipo: TipoCarro, refresh: Boolean = false): List<Carro> {
+        fun getCarros(tipo: TipoCarro, refresh: Boolean = false): List<Carro> {
             val url = "$BASE_URL/tipo/${tipo.name.toLowerCase()}"
+
+            Log.d(TAG, "> CarroService.getCarros() -> ${tipo.name}" )
 
             val cache = Prefs.isCacheOn()
 

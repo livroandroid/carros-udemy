@@ -67,6 +67,9 @@ Versao %s<br><br>
     <!-- O -->
     <string name="ok">OK</string>
 
+    <!-- R -->
+    <string name="refresh">Refresh</string>
+
     <!-- S -->
     <string name="action_salvar">Salvar</string>
     <string name="sobre">Sobre</string>
