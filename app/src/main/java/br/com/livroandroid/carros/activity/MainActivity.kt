@@ -12,6 +12,7 @@ import br.com.livroandroid.carros.adapter.TabsAdapter
 import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.utils.Prefs
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import org.jetbrains.anko.startActivity
@@ -28,6 +29,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         initNavDrawer()
         initViewPagerTabs()
+
+        fab.setOnClickListener { view ->
+            Snackbar.make(view, "Adicionar um carro!", Snackbar.LENGTH_LONG).show()
+        }
     }
 
     private fun initNavDrawer() {

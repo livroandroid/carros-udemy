@@ -77,7 +77,7 @@ class CarroActivity : BaseActivity {
                 setFavoriteColor(favoritado)
 
                 // Dispara o evento
-                //EventBus.getDefault().post(FavoritoEvent(carro))
+                EventBus.getDefault().post(FavoritoEvent(carro))
             }
         }
     }

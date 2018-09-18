@@ -98,7 +98,7 @@
 
     - Criada a 4a tab do aplicativo chamada Favoritos
     - Vamos salvar os carros no banco de dados com a lib Room
-    - Os carros salvos vão aparecer na tab de Favoritos
+    - Os carros salvos  vão aparecer na tab de Favoritos
 
 * 20-fragments
 
@@ -109,3 +109,15 @@
 * 21-bus
 
     - Aprenda a usar Bus de Eventos
+
+* 22-material-design-fab
+
+    - FloatingActionButton (FAB) e CoordinatorLayout
+
+* 23-material-design-list
+
+    - Scroll Flexível na tela de lista de carros
+
+* 24-material-design-carro
+
+    - Scroll Flexível na tela de detalhes do carro
