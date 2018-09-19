@@ -119,3 +119,7 @@
 
     - Scroll Flexível na tela de detalhes do carro
     - Explicado o arquivo dimens.xml para as contantes com a foto do carro
+
+* 24-video
+
+    - Player nativo com startActivity(intent) vs VideView

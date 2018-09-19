@@ -1,10 +1,13 @@
 package br.com.livroandroid.carros.activity
 
+import android.content.Intent
 import android.content.res.ColorStateList
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.VideoView
 import androidx.core.content.ContextCompat
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.domain.Carro
@@ -16,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_carro.*
 import kotlinx.android.synthetic.main.activity_carro_contents.*
 import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
 
 class CarroActivity : BaseActivity() {
@@ -42,6 +46,17 @@ class CarroActivity : BaseActivity() {
         }
 
         fab.setOnClickListener { onClickFavoritar() }
+
+        // Toca o Vídeo
+        imgPlayVideo.setOnClickListener { onClickPlayVideo() }
+    }
+
+    private fun onClickPlayVideo() {
+        startActivity<VideoActivity>("carro" to carro)
+//        val url = carro.urlVideo
+//        val intent = Intent(Intent.ACTION_VIEW)
+//        intent.setDataAndType(Uri.parse(url), "video/*")
+//        startActivity(intent)
     }
 
     /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {

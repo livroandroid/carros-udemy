@@ -31,8 +31,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.CarroActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".activity.CarrosActivity" />
+            android:parentActivityName=".activity.CarrosActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.WebViewActivity"
             android:label="@string/site_do_livro"
@@ -40,6 +40,10 @@
         <activity
             android:name=".activity.PreferencesActivity"
             android:parentActivityName=".activity.MainActivity" />
+
+
+        <activity android:name=".activity.VideoActivity"
+            android:parentActivityName=".activity.CarroActivity"/>
     </application>
 
 </manifest>
