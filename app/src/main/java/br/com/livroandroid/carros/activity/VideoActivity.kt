@@ -1,9 +1,9 @@
 package br.com.livroandroid.carros.activity
 
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.MediaController
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.domain.Carro
@@ -31,5 +31,17 @@ class VideoActivity : BaseActivity() {
         videoView.setMediaController(mc)
 
         videoView.start()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?) = when(item?.itemId) {
+        android.R.id.home -> {
+            finish()
+//            val upIntent = NavUtils.getParentActivityIntent(this)
+//            upIntent?.putExtras(intent.extras)
+//            NavUtils.navigateUpTo(this, upIntent!!)
+            true
+        } else -> {
+            super.onOptionsItemSelected(item)
+        }
     }
 }
