@@ -135,12 +135,23 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
             
-            <!-- No capítulo sobre Mapas vamos colocar um mapa aqui -->
+            <!-- Mapa aqui -->
             <FrameLayout
                 android:id="@+id/mapaFragment"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="320dp"
-                android:layout_margin="16dp" />
+                android:layout_margin="16dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mapa Aqui"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    card_view:ignore="HardcodedText" />
+
+            </FrameLayout>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

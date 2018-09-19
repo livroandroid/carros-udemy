@@ -8,7 +8,7 @@
 
     <application
         android:name=".CarrosApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -31,6 +31,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.CarroActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".activity.CarrosActivity" />
         <activity
             android:name=".activity.WebViewActivity"
