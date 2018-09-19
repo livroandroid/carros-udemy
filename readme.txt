@@ -118,3 +118,4 @@
 * 23-material-design-carro
 
     - Scroll Flexível na tela de detalhes do carro
+    - Explicado o arquivo dimens.xml para as contantes com a foto do carro

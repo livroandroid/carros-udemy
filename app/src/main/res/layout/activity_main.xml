@@ -52,8 +52,6 @@
             app:layout_behavior="br.com.livroandroid.carros.view.ScrollingFABBehavior" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-
-
     <!-- Bloco 2: nav drawer -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
