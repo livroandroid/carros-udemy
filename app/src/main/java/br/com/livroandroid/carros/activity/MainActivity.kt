@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.include_toolbar.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
+
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {

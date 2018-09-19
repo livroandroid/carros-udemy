@@ -12,11 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/content"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <!-- Toolbar -->
             <include layout="@layout/include_toolbar" />
@@ -26,15 +25,16 @@
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary" />
+                android:background="@color/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways" />
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="0px"
-                android:layout_weight="1"
-                android:background="@android:color/white" />
-        </LinearLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
         <!-- FAB (+) -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -47,6 +47,7 @@
             android:src="@android:drawable/ic_input_add"
             android:tint="@color/yellow"
             android:layout_gravity="bottom|right"
+            app:layout_behavior="br.com.livroandroid.carros.view.ScrollingFABBehavior"
             tools:ignore="RtlHardcoded" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

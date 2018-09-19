@@ -110,14 +110,11 @@
 
     - Aprenda a usar Bus de Eventos
 
-* 22-material-design-fab
+* 22-material-design-list
 
     - FloatingActionButton (FAB) e CoordinatorLayout
-
-* 23-material-design-list
-
     - Scroll Flexível na tela de lista de carros
 
-* 24-material-design-carro
+* 23-material-design-carro
 
     - Scroll Flexível na tela de detalhes do carro
