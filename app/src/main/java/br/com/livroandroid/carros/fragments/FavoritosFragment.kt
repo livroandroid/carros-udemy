@@ -94,9 +94,13 @@ class FavoritosFragment : BaseFragment() {
             val carros = FavoritosService.getCarros()
 
             uiThread {
-                /*recyclerView.adapter = CarroAdapter(carros) { c ->
-                    activity?.startActivity<CarroActivity>("carro" to c)
-                }*/
+                recyclerView.adapter = CarroAdapter(carros) { c, longClick ->
+                    if(! longClick) {
+                        activity?.startActivity<CarroActivity>("carro" to c)
+                    } else {
+                        toast("LongClick ${c.nome}")
+                    }
+                }
 
                 invisible(progress)
                 swipeToRefresh.isRefreshing = false
