@@ -4,28 +4,22 @@ package br.com.livroandroid.carros.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import br.com.livroandroid.carros.activity.CarroActivity
-
 import br.com.livroandroid.carros.R
-import br.com.livroandroid.carros.activity.PreferencesActivity
+import br.com.livroandroid.carros.activity.CarroActivity
 import br.com.livroandroid.carros.adapter.CarroAdapter
 import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.TipoCarro
-import br.com.livroandroid.carros.extensions.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.adapter_carro.*
-
+import br.com.livroandroid.carros.extensions.invisible
+import br.com.livroandroid.carros.extensions.runOnUiThread
+import br.com.livroandroid.carros.extensions.toast
+import br.com.livroandroid.carros.extensions.visible
 import kotlinx.android.synthetic.main.fragment_carros.*
 import kotlinx.android.synthetic.main.include_progress.*
-import org.jetbrains.anko.custom.onUiThread
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
 
 /**
@@ -94,18 +88,40 @@ class CarrosFragment : BaseFragment() {
 
         invisible(tError)
         visible(recyclerView)
-        if(!swipeToRefresh.isRefreshing) {
+        if (!swipeToRefresh.isRefreshing) {
             visible(progress)
         }
 
-        doAsync(exceptionHandler = { e -> handleError(e)}) {
+        doAsync(exceptionHandler = { e -> handleError(e) }) {
 
             val carros = CarroService.getCarros(tipo, refresh)
 
             uiThread {
-                recyclerView?.adapter = CarroAdapter(carros) { c ->
-                    activity?.startActivity<CarroActivity>("carro" to c)
+                recyclerView?.adapter = CarroAdapter(carros) { c, longClick ->
+                    if(! longClick) {
+                        activity?.startActivity<CarroActivity>("carro" to c)
+                    } else {
+                        toast("LongClick ${c.nome}")
+                    }
                 }
+
+                // (1)
+                /*recyclerView?.adapter = CarroAdapter(carros, { c ->
+                    activity?.startActivity<CarroActivity>("carro" to c)
+                }, { c ->
+                    toast("LongClick ${c.nome}")
+                    true
+                } )*/
+
+                // (2)
+                /*recyclerView?.adapter = CarroAdapter(carros,
+                        onClick = { c ->
+                            activity?.startActivity<CarroActivity>("carro" to c)
+                        },
+                        onLongClick = { c ->
+                            toast("LongClick ${c.nome}")
+                            true
+                        })*/
 
                 invisible(progress)
                 swipeToRefresh.isRefreshing = false
@@ -119,8 +135,8 @@ class CarrosFragment : BaseFragment() {
             visible(tError)
             invisible(recyclerView, progress)
             swipeToRefresh.isRefreshing = false
-            if(e != null) {
-                Log.e("carros","Erro ${e.message}", e)
+            if (e != null) {
+                Log.e("carros", "Erro ${e.message}", e)
                 toast("Erro ${e.message}")
             }
         }

@@ -123,3 +123,7 @@
 * 24-video
 
     - Player nativo com startActivity(intent) vs VideView
+
+* 25-long-click
+
+    - Adicionado o OnLongClickListener no adapter do carro

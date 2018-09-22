@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.include_progress.view.*
 // Define o construtor que recebe (carros,onClick)
 class CarroAdapter (
         val carros: List<Carro>,
-        val onClick: (Carro) -> Unit) :
+        val onClick: (Carro, longClick: Boolean) -> Unit
+        /*val onLongClick: (Carro) -> Boolean*/):
         RecyclerView.Adapter<CarroAdapter.CarrosViewHolder>() {
 
     // Retorna a quantidade de carros na lista
@@ -48,7 +49,13 @@ class CarroAdapter (
             view.img.loadUrl(urlFoto, view.progress)
 
             // Adiciona o evento de clique na linha
-            view.setOnClickListener { onClick(this) }
+            view.setOnClickListener { onClick(this, false) }
+
+            view.setOnLongClickListener { onClick(this, true)
+                true
+            }
+
+            //view.setOnLongClickListener { onLongClick(this) }
         }
 
 
