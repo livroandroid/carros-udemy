@@ -17,16 +17,16 @@
             android:layout_height="wrap_content"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <!-- Toolbar -->
-        <include layout="@layout/include_toolbar" />
+            <!-- Toolbar -->
+            <include layout="@layout/include_toolbar" />
 
-        <!-- Tabs + ViewPager -->
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"/>
+            <!-- Tabs + ViewPager -->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -42,16 +42,16 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
             android:layout_marginEnd="@dimen/fab_margin"
             android:layout_marginRight="@dimen/fab_margin"
             android:layout_marginBottom="@dimen/fab_margin"
             android:src="@android:drawable/ic_input_add"
             android:tint="@color/yellow"
-            android:layout_gravity="bottom|right"
             tools:ignore="RtlHardcoded"
-            app:layout_behavior="br.com.livroandroid.carros.view.ScrollingFABBehavior" />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            app:layout_behavior="br.com.livroandroid.carros.view.ScrollingFABBehavior"/>
 
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
     <!-- Bloco 2: nav drawer -->

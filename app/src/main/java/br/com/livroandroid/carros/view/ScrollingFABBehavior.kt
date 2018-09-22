@@ -25,7 +25,8 @@ class ScrollingFABBehavior(context: Context, attrs: AttributeSet)
 //        Log.e(TAG, "onNestedScroll called $dyConsumed")
         if (dyConsumed > 0) {
 //            Log.d(TAG, "child.hide()")
-//            child.hide()
+            //child.hide()
+
             child.hide(object : FloatingActionButton.OnVisibilityChangedListener() {
                 /**
                  * Called when a FloatingActionButton has been hidden
