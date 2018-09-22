@@ -127,3 +127,8 @@
 * 25-long-click
 
     - Adicionado o OnLongClickListener no adapter do carro
+
+* 26-ok-http
+
+    - Lib OkHttp
+    - Alterado busca da lista de carros para usar classe HttpHelper com GET
