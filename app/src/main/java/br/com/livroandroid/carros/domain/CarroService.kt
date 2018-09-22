@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.extensions.fromJson
+import br.com.livroandroid.carros.utils.HttpHelper
 import br.com.livroandroid.carros.utils.Prefs
 import com.google.gson.Gson
 import java.net.URL
@@ -31,7 +32,7 @@ class CarroService {
             }
 
             // Acessa a internet
-            val json = URL(url).readText()
+            val json = HttpHelper.get(url)
 
             // Salva json no banco
             Prefs.putString(url,json)
