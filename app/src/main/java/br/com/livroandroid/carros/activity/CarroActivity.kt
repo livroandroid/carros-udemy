@@ -13,6 +13,7 @@ import br.com.livroandroid.carros.domain.event.FavoritoEvent
 import br.com.livroandroid.carros.extensions.toast
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_carro.*
+import kotlinx.android.synthetic.main.activity_carro_contents.*
 import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
@@ -27,13 +28,17 @@ class CarroActivity : BaseActivity {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carro)
 
+        setSupportActionBar(toolbar)
+
         carro = intent.getParcelableExtra("carro") as Carro
 
         with(carro) {
-            tNome.text = nome
+            //tNome.text = nome
             tDesc.text = desc
             supportActionBar?.title = nome
             Picasso.get().load(urlFoto).into(img)
+            Picasso.get().load(urlFoto).into(appBarImg)
+
         }
 
         fab.setOnClickListener { onClickFavoritar() }
