@@ -52,11 +52,14 @@ class CarroActivity : BaseActivity() {
     }
 
     private fun onClickPlayVideo() {
-        startActivity<VideoActivity>("carro" to carro)
-//        val url = carro.urlVideo
-//        val intent = Intent(Intent.ACTION_VIEW)
-//        intent.setDataAndType(Uri.parse(url), "video/*")
-//        startActivity(intent)
+        // 1) Player Nativo
+        val url = carro.urlVideo
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.setDataAndType(Uri.parse(url), "video/*")
+        startActivity(intent)
+
+        // 2) VideoView
+//        startActivity<VideoActivity>("carro" to carro)
     }
 
     /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
