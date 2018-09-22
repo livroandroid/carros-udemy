@@ -1,6 +1,8 @@
 package br.com.livroandroid.carros.activity
 
+import android.content.Intent
 import android.content.res.ColorStateList
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -42,6 +44,8 @@ class CarroActivity : BaseActivity {
         }
 
         fab.setOnClickListener { onClickFavoritar() }
+
+        imgPlayVideo.setOnClickListener { onClickVideo() }
     }
 
     /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -69,6 +73,17 @@ class CarroActivity : BaseActivity {
 
             uiThread { setFavoriteColor(favoritado) }
         }
+    }
+
+    private fun onClickVideo() {
+        // 1) Player Nativo
+        val url = carro.urlVideo
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.setDataAndType(Uri.parse(url), "video/*")
+        startActivity(intent)
+
+        // 2) VideoView
+//        startActivity<VideoActivity>("carro" to carro)
     }
 
     private fun onClickFavoritar() {
