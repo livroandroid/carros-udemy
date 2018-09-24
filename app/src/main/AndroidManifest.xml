@@ -31,7 +31,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.CarroActivity"
-            android:parentActivityName=".activity.CarrosActivity" />
+            android:parentActivityName=".activity.CarrosActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".activity.WebViewActivity"
             android:label="@string/site_do_livro"
