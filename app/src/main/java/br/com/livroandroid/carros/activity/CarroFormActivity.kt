@@ -11,6 +11,7 @@ import br.com.livroandroid.carros.extensions.toast
 import kotlinx.android.synthetic.main.activity_carro_form.*
 import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.uiThread
 
 class CarroFormActivity : AppCompatActivity() {
@@ -23,6 +24,8 @@ class CarroFormActivity : AppCompatActivity() {
     }
 
     private fun onClickSalvar() {
+
+        val dialog = indeterminateProgressDialog (message = R.string.msg_aguarde, title = R.string.app_name)
 
         doAsync {
             val c = Carro()
@@ -42,6 +45,8 @@ class CarroFormActivity : AppCompatActivity() {
                     EventBus.getDefault().post(CarroEvent(c))
 
                     finish()
+
+                    dialog.dismiss()
 
                 } else {
                     toast(getString(R.string.msg_erro_salvar))

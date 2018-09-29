@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.activity.CarroActivity
 import br.com.livroandroid.carros.adapter.CarroAdapter
+import br.com.livroandroid.carros.domain.Carro
 import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.domain.event.CarroEvent
@@ -22,9 +23,7 @@ import kotlinx.android.synthetic.main.fragment_carros.*
 import kotlinx.android.synthetic.main.include_progress.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.uiThread
+import org.jetbrains.anko.*
 
 /**
  * A simple [Fragment] subclass.
@@ -108,9 +107,19 @@ class CarrosFragment : BaseFragment() {
                     if(! longClick) {
                         activity?.startActivity<CarroActivity>("carro" to c)
                     } else {
-                        toast("LongClick ${c.nome}")
-
-
+                        val builder = AlertDialog.Builder(context)
+                        builder.setItems(R.array.actions) { _, which ->
+                            when(which) {
+                                0 -> {
+                                    toast("Editar!")
+                                }
+                                1 -> {
+                                    taskDeletarCarro(carros,c)
+                                }
+                            }
+                        }
+                        val dialog = builder.create()
+                        dialog.show()
                     }
                 }
 
@@ -137,6 +146,41 @@ class CarrosFragment : BaseFragment() {
             }
 
         }
+    }
+
+    private fun taskDeletarCarro(carros: MutableList<Carro>,c: Carro) {
+
+        val dialog = activity?.indeterminateProgressDialog (message = R.string.msg_aguarde, title = R.string.app_name)
+
+        doAsync {
+            val response = CarroService.delete(c)
+
+            toast(response.msg)
+
+            if(response.isOk()) {
+
+                val idx = deletefromList(carros, c)
+                if(idx > -1) {
+                    uiThread {
+                        recyclerView?.adapter?.notifyItemRemoved(idx)
+                    }
+                }
+            }
+
+            uiThread {
+                dialog?.dismiss()
+            }
+        }
+    }
+
+    private fun deletefromList(carros: MutableList<Carro>, carro: Carro) : Int {
+        for ((i,c) in carros.withIndex()) {
+            if(c.id == carro.id) {
+                carros.removeAt(i)
+                return i
+            }
+        }
+        return -1
     }
 
     private fun handleError(e: Throwable?) {

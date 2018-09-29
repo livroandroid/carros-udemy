@@ -15,7 +15,7 @@ class CarroService {
         private const val BASE_URL = "http://livrowebservices.com.br/rest/carros"
 
         // Busca os carros por tipo (clássicos, esportivos ou luxo)
-        fun getCarros(tipo: TipoCarro, refresh: Boolean = false): List<Carro> {
+        fun getCarros(tipo: TipoCarro, refresh: Boolean = false): MutableList<Carro> {
             val url = "$BASE_URL/tipo/${tipo.name.toLowerCase()}"
 
             Log.d(TAG, "> CarroService.getCarros() -> ${tipo.name}" )

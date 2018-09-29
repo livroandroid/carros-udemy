@@ -19,10 +19,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_carro.*
 import kotlinx.android.synthetic.main.activity_carro_contents.*
 import org.greenrobot.eventbus.EventBus
-import org.jetbrains.anko.alert
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.uiThread
+import org.jetbrains.anko.*
 
 class CarroActivity : BaseActivity() {
 
@@ -97,6 +94,8 @@ class CarroActivity : BaseActivity() {
 
     private fun taskDeletar() {
 
+        val dialog = indeterminateProgressDialog (message = R.string.msg_aguarde, title = R.string.app_name)
+
         doAsync {
 
             val response = CarroService.delete(carro)
@@ -109,6 +108,8 @@ class CarroActivity : BaseActivity() {
                 EventBus.getDefault().post(CarroEvent(carro))
 
                 finish()
+
+                dialog.dismiss()
             }
         }
     }
