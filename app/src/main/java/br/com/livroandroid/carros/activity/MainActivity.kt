@@ -31,8 +31,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         initNavDrawer()
         initViewPagerTabs()
 
-        fab.setOnClickListener { _ ->
-            //Snackbar.make(view, "Adicionar um carro!", Snackbar.LENGTH_LONG).show()
+        fab.setOnClickListener {
             startActivity<CarroFormActivity>()
         }
     }

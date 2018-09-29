@@ -6,9 +6,12 @@ import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.domain.Carro
 import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.TipoCarro
+import br.com.livroandroid.carros.domain.event.CarroEvent
 import br.com.livroandroid.carros.extensions.toast
 import kotlinx.android.synthetic.main.activity_carro_form.*
+import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.uiThread
 
 class CarroFormActivity : AppCompatActivity() {
 
@@ -26,12 +29,25 @@ class CarroFormActivity : AppCompatActivity() {
             c.tipo = TipoCarro.Classicos.name.toLowerCase()
             c.nome = tNome.text.toString()
             c.desc = tDesc.text.toString()
+            c.urlFoto = "http://www.livroandroid.com.br/livro/carros/classicos/Dodge_Challenger.png"
 
-            CarroService.save(c)
+            val response = CarroService.save(c)
 
-            toast("Carro salvo com sucesso")
+            uiThread {
 
-            finish()
+                if(response.isOk()) {
+                    toast(response.msg)
+
+                    // Dispara o evento
+                    EventBus.getDefault().post(CarroEvent(c))
+
+                    finish()
+
+                } else {
+                    toast(getString(R.string.msg_erro_salvar))
+                }
+                toast("Carro salvo com sucesso")
+            }
         }
     }
 }

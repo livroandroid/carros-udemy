@@ -49,6 +49,7 @@ Versao %s<br><br>
     <string name="mapa">Mapa</string>
     <string name="msg_carro_favoritado">Carro adicionado dos favoritos.</string>
     <string name="msg_carro_desfavoritado">Carro removido dos favoritos.</string>
+    <string name="msg_erro_salvar">Ocorreu um erro ao salvar o carro</string>
 
     <!-- N -->
     <string name="nome">Nome</string>

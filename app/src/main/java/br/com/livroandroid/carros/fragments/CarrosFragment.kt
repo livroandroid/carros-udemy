@@ -12,12 +12,15 @@ import br.com.livroandroid.carros.activity.CarroActivity
 import br.com.livroandroid.carros.adapter.CarroAdapter
 import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.TipoCarro
+import br.com.livroandroid.carros.domain.event.CarroEvent
 import br.com.livroandroid.carros.extensions.invisible
 import br.com.livroandroid.carros.extensions.runOnUiThread
 import br.com.livroandroid.carros.extensions.toast
 import br.com.livroandroid.carros.extensions.visible
 import kotlinx.android.synthetic.main.fragment_carros.*
 import kotlinx.android.synthetic.main.include_progress.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
@@ -32,6 +35,9 @@ class CarrosFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Registra para receber os eventos do bus
+        EventBus.getDefault().register(this)
 
         setHasOptionsMenu(true)
     }
@@ -140,5 +146,21 @@ class CarrosFragment : BaseFragment() {
                 toast("Erro ${e.message}")
             }
         }
+    }
+
+    @Subscribe
+    fun onBusSalvarCarro(event: CarroEvent) {
+        // Recebe o evento e atualiza os favoritos
+        taskCarros()
+
+        val carro = event.carro
+        toast("Carro salvo ${carro.nome}")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // Cancela os eventos do bus
+        EventBus.getDefault().unregister(this)
     }
 }

@@ -14,7 +14,7 @@ import br.com.livroandroid.carros.adapter.CarroAdapter
 import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.FavoritosService
 import br.com.livroandroid.carros.domain.TipoCarro
-import br.com.livroandroid.carros.domain.event.FavoritoEvent
+import br.com.livroandroid.carros.domain.event.CarroEvent
 import br.com.livroandroid.carros.extensions.*
 import kotlinx.android.synthetic.main.adapter_carro.*
 
@@ -110,7 +110,7 @@ class FavoritosFragment : BaseFragment() {
     }
 
     @Subscribe
-    fun onBusFavoritos(event: FavoritoEvent) {
+    fun onBusFavoritos(event: CarroEvent) {
         // Recebe o evento e atualiza os favoritos
         taskCarros()
     }

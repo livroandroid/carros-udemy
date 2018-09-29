@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.domain.Carro
 import br.com.livroandroid.carros.domain.FavoritosService
-import br.com.livroandroid.carros.domain.event.FavoritoEvent
+import br.com.livroandroid.carros.domain.event.CarroEvent
 import br.com.livroandroid.carros.extensions.toast
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_carro.*
@@ -100,7 +100,7 @@ class CarroActivity : BaseActivity() {
                 setFavoriteColor(favoritado)
 
                 // Dispara o evento
-                EventBus.getDefault().post(FavoritoEvent(carro))
+                EventBus.getDefault().post(CarroEvent(carro))
             }
         }
     }
