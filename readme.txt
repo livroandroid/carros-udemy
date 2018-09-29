@@ -141,3 +141,7 @@
 * 28-deletar-carro
 
     - Deletar um carro do servidor com uma request do tipo DELETE
+
+* 29-long-click-alert-list
+
+    - Motrar um alerta para Editar/Deletar o carro ao fazer long click na lista

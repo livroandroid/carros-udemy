@@ -4,6 +4,7 @@ package br.com.livroandroid.carros.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -108,6 +109,8 @@ class CarrosFragment : BaseFragment() {
                         activity?.startActivity<CarroActivity>("carro" to c)
                     } else {
                         toast("LongClick ${c.nome}")
+
+
                     }
                 }
 
