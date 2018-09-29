@@ -11,6 +11,7 @@ import android.widget.VideoView
 import androidx.core.content.ContextCompat
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.domain.Carro
+import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.FavoritosService
 import br.com.livroandroid.carros.domain.event.CarroEvent
 import br.com.livroandroid.carros.extensions.toast
@@ -18,6 +19,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_carro.*
 import kotlinx.android.synthetic.main.activity_carro_contents.*
 import org.greenrobot.eventbus.EventBus
+import org.jetbrains.anko.alert
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
@@ -32,6 +34,8 @@ class CarroActivity : BaseActivity() {
         setContentView(R.layout.activity_carro)
 
         setSupportActionBar(toolbar)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         carro = intent.getParcelableExtra("carro") as Carro
 
@@ -62,20 +66,48 @@ class CarroActivity : BaseActivity() {
 //        startActivity<VideoActivity>("carro" to carro)
     }
 
-    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_carro, menu)
         return super.onCreateOptionsMenu(menu)
-    }*/
+    }
 
     override fun onOptionsItemSelected(item: MenuItem?) = when(item?.itemId) {
         android.R.id.home -> {
             finish()
             true
-        } R.id.action_favoritar -> {
-            onClickFavoritar()
+        } R.id.action_editar -> {
+            toast("Editar!")
+            true
+        } R.id.action_deletar -> {
+
+            alert(R.string.msg_confirma_excluir_carro, R.string.app_name) {
+                positiveButton(R.string.sim) {
+                    // Confirmou o excluir
+                    taskDeletar()
+                }
+                negativeButton(R.string.nao) {
+                    // Não confirmou...
+                }
+            }.show()
             true
         } else -> {
             super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun taskDeletar() {
+        doAsync {
+
+            val response = CarroService.delete(carro)
+
+            uiThread {
+                toast(response.msg)
+
+                // Dispara o evento
+                EventBus.getDefault().post(CarroEvent(carro))
+
+                finish()
+            }
         }
     }
 

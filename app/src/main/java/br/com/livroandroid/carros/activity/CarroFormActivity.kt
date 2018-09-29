@@ -46,7 +46,6 @@ class CarroFormActivity : AppCompatActivity() {
                 } else {
                     toast(getString(R.string.msg_erro_salvar))
                 }
-                toast("Carro salvo com sucesso")
             }
         }
     }

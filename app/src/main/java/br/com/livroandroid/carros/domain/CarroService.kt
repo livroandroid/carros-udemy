@@ -1,6 +1,7 @@
 package br.com.livroandroid.carros.domain
 
 import android.util.Log
+import br.com.livroandroid.carros.domain.dao.DatabaseManager
 import br.com.livroandroid.carros.domain.rest.Response
 import br.com.livroandroid.carros.extensions.fromJson
 import br.com.livroandroid.carros.extensions.toJson
@@ -46,6 +47,23 @@ class CarroService {
             Log.d(TAG,response)
 
             return fromJson(response)
+        }
+
+        // Deleta um carro
+        fun delete(carro: Carro): Response {
+            val url = "$BASE_URL/${carro.id}"
+
+            val json = HttpHelper.delete(url)
+
+            val response = fromJson<Response>(json)
+
+            if(response.isOk()) {
+                // Se removeu do servidor, remove dos favoritos
+                val dao = DatabaseManager.getCarroDAO()
+                dao.delete(carro)
+            }
+
+            return response
         }
     }
 }

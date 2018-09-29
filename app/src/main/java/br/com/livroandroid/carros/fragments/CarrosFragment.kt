@@ -152,9 +152,6 @@ class CarrosFragment : BaseFragment() {
     fun onBusSalvarCarro(event: CarroEvent) {
         // Recebe o evento e atualiza os favoritos
         taskCarros()
-
-        val carro = event.carro
-        toast("Carro salvo ${carro.nome}")
     }
 
     override fun onDestroy() {

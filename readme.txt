@@ -136,3 +136,8 @@
 * 27-salvar-carro
 
     - Salvar um carro no servidor com POST
+    - Vamos enviar um evento (bus) para a tela da lista para atualizá-la depois de inserir/atualizar um carro
+
+* 28-deletar-carro
+
+    - Deletar um carro do servidor com uma request do tipo DELETE
