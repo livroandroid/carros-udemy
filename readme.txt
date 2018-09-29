@@ -144,4 +144,12 @@
 
 * 29-long-click-alert-list
 
-    - Motrar um alerta para Editar/Deletar o carro ao fazer long click na lista
+    - Mostrar um alerta para Editar/Deletar o carro ao fazer long click na lista
+
+* 30-progress-dialog
+
+    - Explicação sobre o ProgressDialog
+
+* 31-editar-carro
+
+    - Ao selecionar um carro da lista, podemos editar os dados
