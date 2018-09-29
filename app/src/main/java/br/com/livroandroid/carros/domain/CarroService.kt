@@ -1,13 +1,11 @@
 package br.com.livroandroid.carros.domain
 
-import android.content.Context
 import android.util.Log
-import br.com.livroandroid.carros.R
+import br.com.livroandroid.carros.domain.rest.Response
 import br.com.livroandroid.carros.extensions.fromJson
+import br.com.livroandroid.carros.extensions.toJson
 import br.com.livroandroid.carros.utils.HttpHelper
 import br.com.livroandroid.carros.utils.Prefs
-import com.google.gson.Gson
-import java.net.URL
 
 class CarroService {
     companion object {
@@ -38,6 +36,16 @@ class CarroService {
             Prefs.putString(url,json)
 
             return fromJson(json)
+        }
+
+        fun save(carro: Carro): Response {
+            val json = carro.toJson()
+
+            val response = HttpHelper.post(BASE_URL, json)
+
+            Log.d(TAG,response)
+
+            return fromJson(response)
         }
     }
 }

@@ -132,3 +132,7 @@
 
     - Lib OkHttp
     - Alterado busca da lista de carros para usar classe HttpHelper com GET
+
+* 27-salvar-carro
+
+    - Salvar um carro no servidor com POST

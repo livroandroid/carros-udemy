@@ -71,6 +71,7 @@ Versao %s<br><br>
     <string name="refresh">Refresh</string>
 
     <!-- S -->
+    <string name="salvar">Salvar</string>
     <string name="action_salvar">Salvar</string>
     <string name="sobre">Sobre</string>
     <string name="site_do_livro">Site do Livro</string>

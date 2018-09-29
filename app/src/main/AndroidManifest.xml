@@ -44,6 +44,9 @@
 
         <activity android:name=".activity.VideoActivity"
             android:parentActivityName=".activity.CarroActivity"/>
+
+        <activity android:name=".activity.CarroFormActivity"
+            android:parentActivityName=".activity.MainActivity"/>
     </application>
 
 </manifest>
