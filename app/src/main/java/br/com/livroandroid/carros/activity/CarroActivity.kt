@@ -79,7 +79,6 @@ class CarroActivity : BaseActivity() {
             toast("Editar!")
             true
         } R.id.action_deletar -> {
-
             alert(R.string.msg_confirma_excluir_carro, R.string.app_name) {
                 positiveButton(R.string.sim) {
                     // Confirmou o excluir
@@ -89,6 +88,7 @@ class CarroActivity : BaseActivity() {
                     // Não confirmou...
                 }
             }.show()
+
             true
         } else -> {
             super.onOptionsItemSelected(item)
@@ -96,11 +96,13 @@ class CarroActivity : BaseActivity() {
     }
 
     private fun taskDeletar() {
+
         doAsync {
 
             val response = CarroService.delete(carro)
 
             uiThread {
+
                 toast(response.msg)
 
                 // Dispara o evento

@@ -149,7 +149,7 @@ class CarrosFragment : BaseFragment() {
     }
 
     @Subscribe
-    fun onBusSalvarCarro(event: CarroEvent) {
+    fun onBusAtualizarLista(event: CarroEvent) {
         // Recebe o evento e atualiza os favoritos
         taskCarros()
     }
