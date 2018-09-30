@@ -8,7 +8,9 @@ import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.domain.event.CarroEvent
 import br.com.livroandroid.carros.extensions.toast
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_carro_form.*
+import kotlinx.android.synthetic.main.activity_carro_form_contents.*
 import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.indeterminateProgressDialog
@@ -30,12 +32,26 @@ class CarroFormActivity : AppCompatActivity() {
 
     private fun initViews() {
         if(carro != null) {
+
+            Picasso.get().load(carro?.urlFoto).into(appBarImg)
             tNome.setText(carro?.nome.toString())
             tDesc.setText(carro?.desc.toString())
+
+            // Tipo do carro
+            when(carro?.tipo) {
+                "classicos" -> radioTipo.check(R.id.tipoClassico)
+                "esportivos" -> radioTipo.check(R.id.tipoEsportivo)
+                "luxo" -> radioTipo.check(R.id.tipoLuxo)
+            }
         }
     }
 
     private fun onClickSalvar() {
+        if(tNome.text.isEmpty()) {
+            // Valida se o campo nome foi preenchido
+            tNome.error = getString(R.string.msg_error_form_nome)
+            return
+        }
 
         val dialog = indeterminateProgressDialog (message = R.string.msg_aguarde, title = R.string.app_name)
 
@@ -47,6 +63,12 @@ class CarroFormActivity : AppCompatActivity() {
             }
             c.nome = tNome.text.toString()
             c.desc = tDesc.text.toString()
+
+            c.tipo = when (radioTipo.checkedRadioButtonId) {
+                R.id.tipoClassico -> TipoCarro.Classicos.name
+                R.id.tipoEsportivo -> TipoCarro.Esportivos.name
+                else -> TipoCarro.Luxo.name
+            }
 
             val response = CarroService.save(c)
 

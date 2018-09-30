@@ -52,6 +52,7 @@ Versao %s<br><br>
     <string name="msg_erro_salvar">Ocorreu um erro ao salvar o carro</string>
     <string name="msg_confirma_excluir_carro">Você deseja mesmo excluir este carro?</string>
     <string name="msg_aguarde">Por favor aguarde...</string>
+    <string name="msg_error_form_nome">Nome é obrigatório</string>
 
     <!-- N -->
     <string name="nome">Nome</string>

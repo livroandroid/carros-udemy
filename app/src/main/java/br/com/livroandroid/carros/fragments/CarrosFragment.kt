@@ -199,7 +199,9 @@ class CarrosFragment : BaseFragment() {
     @Subscribe
     fun onBusAtualizarLista(event: CarroEvent) {
         // Recebe o evento e atualiza os favoritos
-        taskCarros()
+        if(tipo.name.equals(event.carro.tipo,ignoreCase = true)) {
+            taskCarros(true)
+        }
     }
 
     override fun onDestroy() {
