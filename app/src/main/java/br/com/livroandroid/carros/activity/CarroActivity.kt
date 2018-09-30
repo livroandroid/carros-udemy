@@ -73,7 +73,7 @@ class CarroActivity : BaseActivity() {
             finish()
             true
         } R.id.action_editar -> {
-            toast("Editar!")
+            startActivity<CarroFormActivity>("carro" to carro)
             true
         } R.id.action_deletar -> {
             alert(R.string.msg_confirma_excluir_carro, R.string.app_name) {

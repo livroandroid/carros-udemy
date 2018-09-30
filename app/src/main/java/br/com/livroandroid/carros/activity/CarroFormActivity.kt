@@ -16,11 +16,23 @@ import org.jetbrains.anko.uiThread
 
 class CarroFormActivity : AppCompatActivity() {
 
+    private var carro: Carro? = null
+
     override fun onCreate(b: Bundle?) {
         super.onCreate(b)
         setContentView(R.layout.activity_carro_form)
 
         btSalvar.setOnClickListener { onClickSalvar() }
+
+        carro = intent.getParcelableExtra("carro") as Carro?
+        initViews()
+    }
+
+    private fun initViews() {
+        if(carro != null) {
+            tNome.setText(carro?.nome.toString())
+            tDesc.setText(carro?.desc.toString())
+        }
     }
 
     private fun onClickSalvar() {
@@ -28,11 +40,13 @@ class CarroFormActivity : AppCompatActivity() {
         val dialog = indeterminateProgressDialog (message = R.string.msg_aguarde, title = R.string.app_name)
 
         doAsync {
-            val c = Carro()
-            c.tipo = TipoCarro.Classicos.name.toLowerCase()
+            val c = carro?: Carro()
+            if(c.id == 0L) {
+                c.tipo = TipoCarro.Classicos.name.toLowerCase()
+                c.urlFoto = "http://www.livroandroid.com.br/livro/carros/classicos/Dodge_Challenger.png"
+            }
             c.nome = tNome.text.toString()
             c.desc = tDesc.text.toString()
-            c.urlFoto = "http://www.livroandroid.com.br/livro/carros/classicos/Dodge_Challenger.png"
 
             val response = CarroService.save(c)
 

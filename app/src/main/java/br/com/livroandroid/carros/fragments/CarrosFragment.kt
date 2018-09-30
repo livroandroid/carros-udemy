@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.activity.CarroActivity
+import br.com.livroandroid.carros.activity.CarroFormActivity
 import br.com.livroandroid.carros.adapter.CarroAdapter
 import br.com.livroandroid.carros.domain.Carro
 import br.com.livroandroid.carros.domain.CarroService
@@ -111,7 +112,7 @@ class CarrosFragment : BaseFragment() {
                         builder.setItems(R.array.actions) { _, which ->
                             when(which) {
                                 0 -> {
-                                    toast("Editar!")
+                                    activity?.startActivity<CarroFormActivity>("carro" to c)
                                 }
                                 1 -> {
                                     taskDeletarCarro(carros,c)
