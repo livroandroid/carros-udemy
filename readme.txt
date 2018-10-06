@@ -157,3 +157,8 @@
 * 32-cab
 
     - ActionBar de Context (CAB) para selecionar vários carros na lista e fazer alguma ação (deletar/compartilhar)
+    - Ação para excluir vários carros do servidor e favoritos
+
+* 33-share
+
+    - Adicionado opção para compartilhar carros

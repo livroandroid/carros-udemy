@@ -20,6 +20,8 @@ import kotlinx.android.synthetic.main.activity_carro.*
 import kotlinx.android.synthetic.main.activity_carro_contents.*
 import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.*
+import java.util.ArrayList
+
 
 class CarroActivity : BaseActivity() {
 
@@ -75,6 +77,9 @@ class CarroActivity : BaseActivity() {
         } R.id.action_editar -> {
             startActivity<CarroFormActivity>("carro" to carro)
             true
+        } R.id.action_share -> {
+            taskShare()
+            true
         } R.id.action_deletar -> {
             alert(R.string.msg_confirma_excluir_carro, R.string.app_name) {
                 positiveButton(R.string.sim) {
@@ -89,6 +94,31 @@ class CarroActivity : BaseActivity() {
             true
         } else -> {
             super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun taskShare() {
+
+        val dialog = indeterminateProgressDialog (message = R.string.msg_aguarde, title = R.string.app_name)
+
+        doAsync {
+            val carros = listOf(carro)
+
+            val fotoUris = CarroService.downloadFotos(context, carros)
+
+            uiThread {
+
+                // Fecha o dialog
+                dialog.dismiss()
+
+                // Cria a intent com a foto dos carros
+                val shareIntent = Intent()
+                shareIntent.action = Intent.ACTION_SEND_MULTIPLE
+                shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.app_name))
+                shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, fotoUris)
+                shareIntent.type = "image/*"
+                startActivity(Intent.createChooser(shareIntent, getString(R.string.compartilhar_carro)))
+            }
         }
     }
 

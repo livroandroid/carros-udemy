@@ -24,6 +24,8 @@ Versao %s<br><br>
     <string name="configuracoes">Configurações</string>
     <string name="classicos">Clássicos</string>
     <string name="classico">Clássico</string>
+    <string name="compartilhar_carro">Compartilhar Carro</string>
+    <string name="compartilhar_carros">Compartilhar Carros</string>
 
     <!-- D -->
     <string name="descricao">Descrição</string>
@@ -86,6 +88,7 @@ Versao %s<br><br>
     <!-- V -->
     <string name="vazio" />
     <string name="video">Vídeo</string>
+
 
 
 </resources>

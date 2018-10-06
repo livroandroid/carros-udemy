@@ -1,12 +1,18 @@
 package br.com.livroandroid.carros.domain
 
+import android.content.Context
+import android.net.Uri
 import android.util.Log
+import androidx.core.content.FileProvider
 import br.com.livroandroid.carros.domain.dao.DatabaseManager
 import br.com.livroandroid.carros.domain.rest.Response
 import br.com.livroandroid.carros.extensions.fromJson
 import br.com.livroandroid.carros.extensions.toJson
 import br.com.livroandroid.carros.utils.HttpHelper
 import br.com.livroandroid.carros.utils.Prefs
+import java.io.File
+import java.net.URL
+import java.util.ArrayList
 
 class CarroService {
     companion object {
@@ -78,6 +84,34 @@ class CarroService {
                 }
             }
             return response
+        }
+
+        fun downloadFotos(context: Context, carros: List<Carro>): ArrayList<Uri> {
+            // Lista de uris
+            val fotoUris = ArrayList<Uri>()
+            for (c in carros) {
+                val url = c.urlFoto
+                val fileName = url.substring(url.lastIndexOf("/"))
+
+                // Cria o arquivo no SD card
+                val dir = context.getExternalFilesDir(null)
+                val file = File(dir, fileName)
+
+                // Faz download para arquivo
+                val bytes = URL(url).readBytes()
+                val out = file.outputStream()
+                file.writeBytes(bytes)
+                out.close()
+
+                Log.d(TAG,"Foto salva ${file.absolutePath}")
+
+                // Cria a Uri para compartilhar a foto
+                val authority = context.applicationContext.packageName + ".provider"
+                val uri = FileProvider.getUriForFile(context, authority, file)
+                fotoUris.add(uri)
+            }
+
+            return fotoUris
         }
     }
 }

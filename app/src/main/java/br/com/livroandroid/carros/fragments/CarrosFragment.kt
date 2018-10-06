@@ -1,6 +1,7 @@
 package br.com.livroandroid.carros.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -155,8 +156,7 @@ class CarrosFragment : BaseFragment() {
                     taskDeletarCarros()
 
                 } else if (item?.itemId == R.id.action_share) {
-                    toast("Share")
-
+                    taskShare()
                 }
                 // Encerra o action mode
                 mode?.finish()
@@ -178,6 +178,31 @@ class CarrosFragment : BaseFragment() {
                 recyclerView.adapter?.notifyDataSetChanged()
             }
 
+        }
+    }
+
+    private fun taskShare() {
+
+        val dialog = activity?.indeterminateProgressDialog (message = R.string.msg_aguarde, title = R.string.app_name)
+
+        doAsync {
+            val carros = getSelectedCarros()
+
+            val fotoUris = CarroService.downloadFotos(context, carros)
+
+            uiThread {
+
+                // Fecha o dialog
+                dialog?.dismiss()
+
+                // Cria a intent com a foto dos carros
+                val shareIntent = Intent()
+                shareIntent.action = Intent.ACTION_SEND_MULTIPLE
+                shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.app_name))
+                shareIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, fotoUris)
+                shareIntent.type = "image/*"
+                startActivity(Intent.createChooser(shareIntent, getString(R.string.compartilhar_carro)))
+            }
         }
     }
 
