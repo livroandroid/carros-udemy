@@ -177,7 +177,7 @@ class FavoritosFragment : BaseFragment() {
         val dialog = activity?.indeterminateProgressDialog(message = R.string.msg_aguarde, title = R.string.app_name)
 
         doAsync {
-            val favoritado = FavoritosService.desfavoritar(selectedCarros)
+            FavoritosService.desfavoritar(selectedCarros)
 
             toast(R.string.msg_carro_desfavoritados)
 
@@ -206,6 +206,21 @@ class FavoritosFragment : BaseFragment() {
         return -1
     }
 
+    private fun onClickCarro(c: Carro) {
+        // Click simples
+        if (actionMode == null) {
+            activity?.startActivity<CarroActivity>("carro" to c)
+        } else {
+            // Se a CAB está ativada
+            // Seleciona o carro
+            c.selected = !c.selected
+            // Atualiza o título com a quantidade de carros selecionados
+            updateActionModeTitle()
+            // Redesenha a lista
+            recyclerView.adapter?.notifyDataSetChanged()
+        }
+    }
+
     // Atualiza o título da action bar (CAB)
     private fun updateActionModeTitle() {
         if (actionMode != null) {
@@ -230,21 +245,6 @@ class FavoritosFragment : BaseFragment() {
             }
         }
         return list
-    }
-
-    private fun onClickCarro(c: Carro) {
-        // Click simples
-        if (actionMode == null) {
-            activity?.startActivity<CarroActivity>("carro" to c)
-        } else {
-            // Se a CAB está ativada
-            // Seleciona o carro
-            c.selected = !c.selected
-            // Atualiza o título com a quantidade de carros selecionados
-            updateActionModeTitle()
-            // Redesenha a lista
-            recyclerView.adapter?.notifyDataSetChanged()
-        }
     }
 
     @Subscribe
