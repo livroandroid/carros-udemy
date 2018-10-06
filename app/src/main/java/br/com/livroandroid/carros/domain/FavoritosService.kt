@@ -9,9 +9,9 @@ object FavoritosService {
     private val dao = DatabaseManager.getCarroDAO()
     
     // Retorna todos os carros favoritados
-    fun getCarros(): List<Carro> {
+    fun getCarros(): MutableList<Carro> {
         Log.d(TAG, "> FavoritosService.getCarros()")
-        return dao.findAll()
+        return dao.findAll().toMutableList()
     }
 
     // Verifica se um carro está favoritado
@@ -30,5 +30,12 @@ object FavoritosService {
         // Adiciona nos favoritos
         dao.insert(carro)
         return true
+    }
+
+    fun desfavoritar(carros: List<Carro>) {
+        // Remove os carros do banco de dados do favoritos
+        for (c in carros) {
+            dao.delete(c)
+        }
     }
 }

@@ -111,6 +111,9 @@ class CarrosFragment : BaseFragment() {
             carros = CarroService.getCarros(tipo, refresh)
 
             uiThread {
+                invisible(progress)
+                swipeToRefresh.isRefreshing = false
+
                 recyclerView?.adapter = CarroAdapter(context,carros) { c, longClick ->
                     if (longClick) {
                         onLongClickCarro(c)
@@ -118,9 +121,6 @@ class CarrosFragment : BaseFragment() {
                         onClickCarro(c)
                     }
                 }
-
-                invisible(progress)
-                swipeToRefresh.isRefreshing = false
             }
 
         }
@@ -185,7 +185,7 @@ class CarrosFragment : BaseFragment() {
         // Click simples
         if (actionMode == null) {
             activity?.startActivity<CarroActivity>("carro" to c)
-        } else run {
+        } else {
             // Se a CAB está ativada
             // Seleciona o carro
             c.selected = !c.selected
