@@ -22,6 +22,9 @@ class Carro() : Parcelable {
     var latitude = ""
     var longitude = ""
 
+    // Flag para indicar que o carro está selecionado
+    var selected = false
+
     constructor(parcel: Parcel) : this() {
         id = parcel.readLong()
         tipo = parcel.readString()!!

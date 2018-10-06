@@ -8,6 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
         <!-- Cor para o efeito ripple -->
         <item name="colorControlHighlight">@color/control_highlight</item>
+
+        <!-- Action Mode Overlay -->
+        <item name="windowActionModeOverlay">true</item>
+        <!-- Cor da action bar de contexto (CAB) -->
+        <item name="actionModeBackground">@color/colorPrimary</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

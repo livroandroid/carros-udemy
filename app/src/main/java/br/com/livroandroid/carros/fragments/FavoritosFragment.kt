@@ -94,7 +94,7 @@ class FavoritosFragment : BaseFragment() {
             val carros = FavoritosService.getCarros()
 
             uiThread {
-                recyclerView.adapter = CarroAdapter(carros) { c, longClick ->
+                recyclerView.adapter = CarroAdapter(context,carros) { c, longClick ->
                     if(! longClick) {
                         activity?.startActivity<CarroActivity>("carro" to c)
                     } else {

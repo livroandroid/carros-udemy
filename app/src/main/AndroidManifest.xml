@@ -46,7 +46,9 @@
             android:parentActivityName=".activity.CarroActivity"/>
 
         <activity android:name=".activity.CarroFormActivity"
-            android:parentActivityName=".activity.MainActivity"/>
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+             />
     </application>
 
 </manifest>

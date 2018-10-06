@@ -65,5 +65,19 @@ class CarroService {
 
             return response
         }
+
+        fun deleteCarros(selectedCarros: List<Carro>): Response {
+            lateinit var response: Response
+
+            // Deleta os carros 1 a 1
+            for (c in selectedCarros) {
+                response = delete(c)
+
+                if(!response.isOk()) {
+                    return response
+                }
+            }
+            return response
+        }
     }
 }

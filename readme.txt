@@ -153,3 +153,7 @@
 * 31-editar-carro
 
     - Ao selecionar um carro da lista, podemos editar os dados
+
+* 32-cab
+
+    - ActionBar de Context (CAB) para selecionar vários carros na lista e fazer alguma ação (deletar/compartilhar)
