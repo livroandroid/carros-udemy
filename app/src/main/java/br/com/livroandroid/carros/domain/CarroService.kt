@@ -2,6 +2,7 @@ package br.com.livroandroid.carros.domain
 
 import android.content.Context
 import android.net.Uri
+import android.util.Base64
 import android.util.Log
 import androidx.core.content.FileProvider
 import br.com.livroandroid.carros.domain.dao.DatabaseManager
@@ -112,6 +113,20 @@ class CarroService {
             }
 
             return fotoUris
+        }
+
+        fun postFoto(file: File): Response {
+            val url = "$BASE_URL/postFotoBase64"
+
+            // Converte para Base64
+            val bytes = file.readBytes()
+            val base64 = Base64.encodeToString(bytes, Base64.NO_WRAP)
+
+            val params = mapOf("fileName" to file.name, "base64" to base64)
+
+            val json = HttpHelper.postForm(url, params)
+
+            return fromJson(json)
         }
     }
 }
