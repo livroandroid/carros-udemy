@@ -19,8 +19,11 @@ class Carro() : Parcelable {
     var urlInfo = ""
     var urlVideo = ""
 
-    var latitude = ""
+    var latitude: String = ""
+        get() = if (field.trim().isEmpty()) "0.0" else field
+
     var longitude = ""
+        get() = if (field.trim().isEmpty()) "0.0" else field
 
     // Flag para indicar que o carro está selecionado
     var selected = false

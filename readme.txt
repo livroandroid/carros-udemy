@@ -154,11 +154,23 @@
 
     - Ao selecionar um carro da lista, podemos editar os dados
 
-* 32-cab
+* 32-editar-carro-material
+
+    - Tela de editar o carro com Material Design
+
+* 33-cab
 
     - ActionBar de Context (CAB) para selecionar vários carros na lista e fazer alguma ação (deletar/compartilhar)
     - Ação para excluir vários carros do servidor e favoritos
 
-* 33-share
+* 34-share
 
     - Adicionado opção para compartilhar carros
+
+* 35-camera
+
+    - Tirar foto do carro
+
+* 36-maps
+
+    - Google Maps

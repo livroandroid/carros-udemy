@@ -15,17 +15,24 @@ import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.FavoritosService
 import br.com.livroandroid.carros.domain.event.CarroEvent
 import br.com.livroandroid.carros.extensions.toast
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_carro.*
 import kotlinx.android.synthetic.main.activity_carro_contents.*
 import org.greenrobot.eventbus.EventBus
 import org.jetbrains.anko.*
-import java.util.ArrayList
 
-
-class CarroActivity : BaseActivity() {
+class CarroActivity : BaseActivity(), OnMapReadyCallback {
 
     private lateinit var carro: Carro
+
+    private lateinit var mapFragment: SupportMapFragment
+    private var map: GoogleMap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +59,28 @@ class CarroActivity : BaseActivity() {
 
         // Toca o Vídeo
         imgPlayVideo.setOnClickListener { onClickPlayVideo() }
+
+        // Mapa
+        mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
+    }
+
+    override fun onMapReady(map: GoogleMap?) {
+        this.map = map
+
+        // Configura o tipo do mapa
+        map?.mapType = GoogleMap.MAP_TYPE_NORMAL
+
+        // Cria o objeto lat/lng com a coordenada da fábrica
+        val location = LatLng(carro.latitude.toDouble(), carro.longitude.toDouble())
+        // Posiciona o mapa na coordenada da fábrica (zoom = 13)
+        val update = CameraUpdateFactory.newLatLngZoom(location, 13f)
+        map?.moveCamera(update)
+        // Marcador no local da fábrica
+        map?.addMarker(MarkerOptions()
+                .title(carro.nome)
+                .snippet(carro.desc)
+                .position(location))
     }
 
     private fun onClickPlayVideo() {

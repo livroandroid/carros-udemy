@@ -16,6 +16,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
+        <!-- Maps. -->
+        <meta-data android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/API_KEY"/>
+
         <!-- Permitir exportar arquivos para outros apps -->
         <provider
             android:name="androidx.core.content.FileProvider"
