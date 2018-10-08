@@ -154,6 +154,10 @@
 
     - Ao selecionar um carro da lista, podemos editar os dados
 
-* 32-cab
+* 32-editar-carro-material
+
+    - Tela de editar o carro com Material Design
+
+* 33-cab
 
     - ActionBar de Context (CAB) para selecionar vários carros na lista e fazer alguma ação (deletar/compartilhar)
