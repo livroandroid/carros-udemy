@@ -1,5 +1,7 @@
 package br.com.livroandroid.carros
 
+import br.com.livroandroid.carros.domain.CarroService
+import br.com.livroandroid.carros.domain.TipoCarro
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -12,5 +14,8 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+
+        val carros = CarroService.getCarros(TipoCarro.Classicos, true)
+        println(carros)
     }
 }

@@ -12,30 +12,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <!-- Toolbar -->
-        <include layout="@layout/include_toolbar" />
-
-        <!-- Tabs + ViewPager -->
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"/>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
+        <LinearLayout
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/white"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            android:orientation="vertical">
+
+            <!-- Toolbar -->
+            <include layout="@layout/include_toolbar" />
+
+            <!-- Tabs + ViewPager -->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1"
+                android:background="@android:color/white" />
+        </LinearLayout>
 
         <!-- FAB (+) -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -48,8 +47,8 @@
             android:src="@android:drawable/ic_input_add"
             android:tint="@color/yellow"
             android:layout_gravity="bottom|right"
-            tools:ignore="RtlHardcoded"
-            app:layout_behavior="br.com.livroandroid.carros.view.ScrollingFABBehavior" />
+            tools:ignore="RtlHardcoded" />
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <!-- Bloco 2: nav drawer -->

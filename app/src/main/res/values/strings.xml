@@ -3,6 +3,8 @@
 
     <!-- A -->
     <string name="action_about">Sobre</string>
+    <string name="action_deletar">Deletar</string>
+    <string name="action_share">Compartilhar</string>
     <string name="action_settings">Settings</string>
     <string name="about_dialog_text">
 <![CDATA[
@@ -22,10 +24,11 @@ Versao %s<br><br>
     <string name="configuracoes">Configurações</string>
     <string name="classicos">Clássicos</string>
     <string name="classico">Clássico</string>
+    <string name="compartilhar_carro">Compartilhar Carro</string>
+    <string name="compartilhar_carros">Compartilhar Carros</string>
 
     <!-- D -->
     <string name="descricao">Descrição</string>
-    <string name="action_deletar">Deletar</string>
 
     <!-- E -->
     <string name="esportivos">Esportivos</string>
@@ -47,8 +50,13 @@ Versao %s<br><br>
     <!-- M -->
     <string name="msg_internet_indisponivel">Internet indisponível. Verifique sua conexão e tente novamente.</string>
     <string name="mapa">Mapa</string>
-    <string name="msg_carro_favoritado">Carro adicionado aos favoritado.</string>
-    <string name="msg_carro_desfavoritado">Carro removido do favoritados.</string>
+    <string name="msg_carro_favoritado">Carro adicionado dos favoritos.</string>
+    <string name="msg_carro_desfavoritado">Carro removido dos favoritos.</string>
+    <string name="msg_carro_desfavoritados">Carros removidos dos favoritos.</string>
+    <string name="msg_erro_salvar">Ocorreu um erro ao salvar o carro</string>
+    <string name="msg_confirma_excluir_carro">Você deseja mesmo excluir este carro?</string>
+    <string name="msg_aguarde">Por favor aguarde...</string>
+    <string name="msg_error_form_nome">Nome é obrigatório</string>
 
     <!-- N -->
     <string name="nome">Nome</string>
@@ -67,7 +75,11 @@ Versao %s<br><br>
     <!-- O -->
     <string name="ok">OK</string>
 
+    <!-- R -->
+    <string name="refresh">Refresh</string>
+
     <!-- S -->
+    <string name="salvar">Salvar</string>
     <string name="action_salvar">Salvar</string>
     <string name="sobre">Sobre</string>
     <string name="site_do_livro">Site do Livro</string>
@@ -76,6 +88,7 @@ Versao %s<br><br>
     <!-- V -->
     <string name="vazio" />
     <string name="video">Vídeo</string>
+
 
 
 </resources>

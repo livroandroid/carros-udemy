@@ -12,7 +12,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <!-- Layout com detalhes do carro -->
-        <include layout="@layout/activity_carro_contents" />
+        <include layout="@layout/activity_carro_form_contents" />
 
     </androidx.core.widget.NestedScrollView>
 
@@ -55,13 +55,5 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_favorite"
-        android:tint="@color/favorito_tint_off"
-        app:layout_anchor="@+id/appbar"
-        app:layout_anchorGravity="bottom|right|end" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

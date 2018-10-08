@@ -93,3 +93,84 @@
 *  18-config
 
     - Mostrado como criar telas de configurações no Android
+
+* 19-room
+
+    - Criada a 4a tab do aplicativo chamada Favoritos
+    - Vamos salvar os carros no banco de dados com a lib Room
+    - Os carros salvos  vão aparecer na tab de Favoritos
+
+* 20-fragments
+
+    - Dicas sobre ciclo de vida do fragment
+    - onResume vs onActivityCreated
+    - Adicionando botões na Action Bar
+
+* 21-bus
+
+    - Aprenda a usar Bus de Eventos
+
+* 22-material-design-list
+
+    - FloatingActionButton (FAB) e CoordinatorLayout
+    - Scroll Flexível na tela de lista de carros
+
+* 23-material-design-carro
+
+    - Scroll Flexível na tela de detalhes do carro
+    - Explicado o arquivo dimens.xml para as contantes com a foto do carro
+
+* 24-video
+
+    - Player nativo com startActivity(intent) vs VideView
+
+* 25-long-click
+
+    - Adicionado o OnLongClickListener no adapter do carro
+
+* 26-ok-http
+
+    - Lib OkHttp
+    - Alterado busca da lista de carros para usar classe HttpHelper com GET
+
+* 27-salvar-carro
+
+    - Salvar um carro no servidor com POST
+    - Vamos enviar um evento (bus) para a tela da lista para atualizá-la depois de inserir/atualizar um carro
+
+* 28-deletar-carro
+
+    - Deletar um carro do servidor com uma request do tipo DELETE
+
+* 29-long-click-alert-list
+
+    - Mostrar um alerta para Editar/Deletar o carro ao fazer long click na lista
+
+* 30-progress-dialog
+
+    - Explicação sobre o ProgressDialog
+
+* 31-editar-carro
+
+    - Ao selecionar um carro da lista, podemos editar os dados
+
+* 32-editar-carro-material
+
+    - Tela de editar o carro com Material Design
+
+* 33-cab
+
+    - ActionBar de Context (CAB) para selecionar vários carros na lista e fazer alguma ação (deletar/compartilhar)
+    - Ação para excluir vários carros do servidor e favoritos
+
+* 34-share
+
+    - Adicionado opção para compartilhar carros
+
+* 35-camera
+
+    - Tirar foto do carro
+
+* 36-maps
+
+    - Google Maps

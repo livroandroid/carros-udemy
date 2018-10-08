@@ -12,10 +12,12 @@ import br.com.livroandroid.carros.adapter.TabsAdapter
 import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.utils.Prefs
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
+
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -28,6 +30,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         initNavDrawer()
         initViewPagerTabs()
+
+        fab.setOnClickListener {
+            startActivity<CarroFormActivity>()
+        }
     }
 
     private fun initNavDrawer() {
@@ -39,7 +45,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun initViewPagerTabs() {
-        viewPager.offscreenPageLimit = 2
+        viewPager.offscreenPageLimit = 3
         viewPager.adapter = TabsAdapter(this, supportFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
         // Cor branca no texto (a cor de fundo é definido no layout)
@@ -68,26 +74,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> {
-                toast("Settings")
-                true
-            }
-            R.id.action_refresh -> {
-                toast("Refresh")
-                true
-            }
-            R.id.action_share -> {
-                toast("Share")
+                startActivity<PreferencesActivity>()
                 true
             }
             else -> super.onOptionsItemSelected(item)

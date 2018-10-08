@@ -3,18 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_refresh"
-        android:title="Refresh"
-        android:icon="@drawable/ic_action_refresh"
-        app:showAsAction="always" />
-
-    <item
-        android:id="@+id/action_share"
-        android:title="Share"
-        android:icon="@drawable/ic_action_share"
-        app:showAsAction="always" />
-
-    <item
         android:id="@+id/action_settings"
         android:title="@string/action_settings"
         app:showAsAction="never" />

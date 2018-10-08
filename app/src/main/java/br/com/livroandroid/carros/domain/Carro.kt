@@ -2,10 +2,15 @@ package br.com.livroandroid.carros.domain
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "carro")
 class Carro() : Parcelable {
+    @PrimaryKey
     var id:Long = 0
+
     var tipo = ""
     var nome = ""
     var desc = ""
@@ -14,8 +19,14 @@ class Carro() : Parcelable {
     var urlInfo = ""
     var urlVideo = ""
 
-    var latitude = ""
+    var latitude: String = ""
+        get() = if (field.trim().isEmpty()) "0.0" else field
+
     var longitude = ""
+        get() = if (field.trim().isEmpty()) "0.0" else field
+
+    // Flag para indicar que o carro está selecionado
+    var selected = false
 
     constructor(parcel: Parcel) : this() {
         id = parcel.readLong()

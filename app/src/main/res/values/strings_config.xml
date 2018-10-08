@@ -1,4 +1,7 @@
 <resources>
     <string name="key_fazer_cache">key_fazer_cache</string>
 
+    <!-- Chave copiada do Google API Console -->
+    <string name="API_KEY">AIzaSyDD0PgBza_SHaX4BV0jvVsRWoNJQ0edXFI</string>
+
 </resources>

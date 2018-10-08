@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="actions">
+        <item>@string/action_editar</item>
+        <item>@string/action_deletar</item>
+    </array>
+</resources>
