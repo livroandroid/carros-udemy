@@ -1,7 +1,12 @@
 package br.com.livroandroid.carros.activity
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.domain.Carro
 import br.com.livroandroid.carros.domain.CarroService
@@ -31,6 +36,24 @@ class CarroFormActivity : AppCompatActivity() {
 
         carro = intent.getParcelableExtra("carro") as Carro?
         initViews()
+
+        appBarImg.setOnClickListener { onClickCamera() }
+    }
+
+    private fun onClickCamera() {
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(cameraIntent, 0)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(resultCode == Activity.RESULT_OK) {
+            val bitmap = data?.extras?.get("data") as Bitmap
+            appBarImg.setImageBitmap(bitmap)
+            Log.d("carros","Bitmap w/h: ${bitmap.width}/${bitmap.height}")
+        }
+
     }
 
     private fun initViews() {
