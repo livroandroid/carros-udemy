@@ -14,6 +14,7 @@ import br.com.livroandroid.carros.domain.Carro
 import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.FavoritosService
 import br.com.livroandroid.carros.domain.event.CarroEvent
+import br.com.livroandroid.carros.extensions.loadUrl
 import br.com.livroandroid.carros.extensions.toast
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_carro.*
@@ -44,8 +45,10 @@ class CarroActivity : BaseActivity() {
 
             tDesc.text = desc
 
-            Picasso.get().load(urlFoto).into(img)
-            Picasso.get().load(urlFoto).into(appBarImg)
+            img.loadUrl(urlFoto)
+            appBarImg.loadUrl(urlFoto)
+//            Picasso.get().load(urlFoto).into(img)
+//            Picasso.get().load(urlFoto).into(appBarImg)
         }
 
         fab.setOnClickListener { onClickFavoritar() }
