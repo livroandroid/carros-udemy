@@ -166,3 +166,8 @@
 * 34-share
 
     - Adicionado opção para compartilhar carros
+
+* 35-camera-thumb
+
+    - Mostra como tirar a foto do carro com a câmera nativa usando uma Intent
+    - A foto será uma pequena thumb
