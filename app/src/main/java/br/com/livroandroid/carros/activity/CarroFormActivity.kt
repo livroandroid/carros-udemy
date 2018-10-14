@@ -64,6 +64,8 @@ class CarroFormActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
+        //outState.putString("nome","Ricardo")
+
         // Salva o estado do arquivo caso gire a tela
         camera.onSaveInstanceState(outState)
     }
@@ -74,8 +76,25 @@ class CarroFormActivity : AppCompatActivity() {
         // Nome do arquivo da foto
         val fileName = "foto_carro_$ms.jpg"
         // Abre a câmera
-        val cameraIntent = camera.open(this, fileName)
+        val cameraIntent = camera.getIntent(this, fileName)
         startActivityForResult(cameraIntent, 0)
+    }
+
+    // Lê a foto quando a câmera retornar
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+
+//            val file = camera.file
+//            appBarImg.setImageURI(Uri.fromFile(file))
+
+            // Resize da imagem
+            val bitmap = camera.getBitmap(600, 600)
+            if (bitmap != null) {
+                // Mostra a foto do carro
+                appBarImg.setImageBitmap(bitmap)
+            }
+        }
     }
 
     private fun onClickSalvar() {
@@ -125,19 +144,6 @@ class CarroFormActivity : AppCompatActivity() {
                 } else {
                     toast(getString(R.string.msg_erro_salvar))
                 }
-            }
-        }
-    }
-
-    // Lê a foto quando a câmera retornar
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            // Resize da imagem
-            val bitmap = camera.getBitmap(1200, 800)
-            if (bitmap != null) {
-                // Mostra a foto do carro
-                appBarImg.setImageBitmap(bitmap)
             }
         }
     }

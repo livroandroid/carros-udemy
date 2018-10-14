@@ -14,7 +14,7 @@ import java.io.FileOutputStream
 
 class CameraHelper {
     companion object {
-        private const val TAG = "carros"
+        private const val TAG = "carros_camera"
     }
 
     // Arquivo pode ser nulo
@@ -22,9 +22,9 @@ class CameraHelper {
         private set
 
     // Se girou a tela recupera o estado
-    fun init(icicle: Bundle?,onInit: (file: File) -> Unit) {
-        if (icicle != null) {
-            val f = icicle.getSerializable("file") as File?
+    fun init(b: Bundle?,onInit: (file: File) -> Unit) {
+        if (b != null) {
+            val f = b.getSerializable("file") as File?
             if(f != null) {
                 onInit(f)
                 this.file = f
@@ -40,13 +40,14 @@ class CameraHelper {
     }
 
     // Intent para abrir a câmera
-    fun open(context: Context, fileName: String): Intent {
+    fun getIntent(context: Context, fileName: String): Intent {
         file = getFile(context, fileName)
         Log.d(TAG,"Foto: ${file?.absolutePath}")
         val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         file?.apply {
             val authority = context.applicationContext.packageName + ".provider"
             val uri = FileProvider.getUriForFile(context, authority, this)
+            Log.d(TAG,"Uri: ${uri.toString()}")
             cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
         }
         return cameraIntent
@@ -66,7 +67,7 @@ class CameraHelper {
     fun getBitmap(w: Int, h: Int): Bitmap? {
         file?.apply {
             if (exists()) {
-                Log.d(TAG, absolutePath)
+
                 // Resize
                 val bitmap = ImageUtils.resize(this, w, h)
 
@@ -85,7 +86,6 @@ class CameraHelper {
             val out = FileOutputStream(this)
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out)
             out.close()
-            Log.d(TAG, "Foto salva: $absolutePath")
         }
     }
 }
