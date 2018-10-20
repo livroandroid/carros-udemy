@@ -21,6 +21,7 @@ import br.com.livroandroid.carros.extensions.invisible
 import br.com.livroandroid.carros.extensions.runOnUiThread
 import br.com.livroandroid.carros.extensions.toast
 import br.com.livroandroid.carros.extensions.visible
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.android.synthetic.main.fragment_carros.*
 import kotlinx.android.synthetic.main.include_progress.*
 import org.greenrobot.eventbus.EventBus
@@ -36,6 +37,10 @@ import java.util.*
  *
  */
 class CarrosFragment : BaseFragment() {
+
+    private val mFirebaseAnalytics: FirebaseAnalytics by lazy {
+        FirebaseAnalytics.getInstance(context)
+    }
 
     private var actionMode: ActionMode? = null
     private lateinit var tipo: TipoCarro
@@ -210,6 +215,10 @@ class CarrosFragment : BaseFragment() {
         // Click simples
         if (actionMode == null) {
             activity?.startActivity<CarroActivity>("carro" to c)
+
+            val bundle = Bundle()
+            bundle.putString("carro",c.nome)
+            mFirebaseAnalytics.logEvent("click_carro", bundle)
         } else {
             // Se a CAB está ativada
             // Seleciona o carro
