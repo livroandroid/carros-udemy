@@ -71,11 +71,16 @@ class CarroActivity : BaseActivity(), OnMapReadyCallback {
         // Configura o tipo do mapa
         map?.mapType = GoogleMap.MAP_TYPE_NORMAL
 
+        map?.uiSettings?.isZoomControlsEnabled = true
+
         // Cria o objeto lat/lng com a coordenada da fábrica
-        val location = LatLng(carro.latitude.toDouble(), carro.longitude.toDouble())
-        // Posiciona o mapa na coordenada da fábrica (zoom = 13)
+        val lat = carro.latitude.toDouble()
+        val lng = carro.longitude.toDouble()
+        val location = LatLng(lat, lng)
+        // Posiciona o mapa na coordenada do carro (zoom = 13)
         val update = CameraUpdateFactory.newLatLngZoom(location, 13f)
         map?.moveCamera(update)
+
         // Marcador no local da fábrica
         map?.addMarker(MarkerOptions()
                 .title(carro.nome)
