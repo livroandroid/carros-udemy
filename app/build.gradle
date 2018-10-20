@@ -61,4 +61,9 @@ dependencies {
 
     // Google Maps
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-core:16.0.4'
 }
+
+apply plugin: 'com.google.gms.google-services'
