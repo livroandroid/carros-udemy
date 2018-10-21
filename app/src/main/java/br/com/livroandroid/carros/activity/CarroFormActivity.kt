@@ -10,6 +10,7 @@ import br.com.livroandroid.carros.domain.Carro
 import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.domain.event.CarroEvent
+import br.com.livroandroid.carros.domain.retroft.CarroServiceRetrofit
 import br.com.livroandroid.carros.extensions.toast
 import br.com.livroandroid.carros.utils.CameraHelper
 import com.squareup.picasso.Picasso
@@ -101,29 +102,33 @@ class CarroFormActivity : AppCompatActivity() {
             // Upload Foto
             val file = camera.file
             if (file != null && file.exists()) {
-                val response = CarroService.postFoto(file)
-                if (response.isOk()) {
-                    // Atualiza a URL da foto no carro
-                    c.urlFoto = response.url
+                val response = CarroServiceRetrofit.postFoto(file)
+                if(response != null) {
+                    if (response.isOk()) {
+                        // Atualiza a URL da foto no carro
+                        c.urlFoto = response.url
+                    }
                 }
             }
 
-            val response = CarroService.save(c)
+            val response = CarroServiceRetrofit.save(c)
 
-            uiThread {
+            if(response != null) {
+                uiThread {
 
-                if(response.isOk()) {
-                    toast(response.msg)
+                    if(response.isOk()) {
+                        toast(response.msg)
 
-                    // Dispara o evento
-                    EventBus.getDefault().post(CarroEvent(c))
+                        // Dispara o evento
+                        EventBus.getDefault().post(CarroEvent(c))
 
-                    finish()
+                        finish()
 
-                    dialog.dismiss()
+                        dialog.dismiss()
 
-                } else {
-                    toast(getString(R.string.msg_erro_salvar))
+                    } else {
+                        toast(getString(R.string.msg_erro_salvar))
+                    }
                 }
             }
         }

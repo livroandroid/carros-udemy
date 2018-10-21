@@ -174,3 +174,8 @@
 * 36-maps
 
     - Google Maps
+
+* 37-retrofit
+
+    - Adicionado lib Retrofit no Projeto.
+

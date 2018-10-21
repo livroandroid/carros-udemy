@@ -14,6 +14,7 @@ import br.com.livroandroid.carros.domain.Carro
 import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.FavoritosService
 import br.com.livroandroid.carros.domain.event.CarroEvent
+import br.com.livroandroid.carros.domain.retroft.CarroServiceRetrofit
 import br.com.livroandroid.carros.extensions.toast
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -157,18 +158,20 @@ class CarroActivity : BaseActivity(), OnMapReadyCallback {
 
         doAsync {
 
-            val response = CarroService.delete(carro)
+            val response = CarroServiceRetrofit.delete(carro)
 
-            uiThread {
+            if(response != null) {
+                uiThread {
 
-                toast(response.msg)
+                    toast(response.msg)
 
-                // Dispara o evento
-                EventBus.getDefault().post(CarroEvent(carro))
+                    // Dispara o evento
+                    EventBus.getDefault().post(CarroEvent(carro))
 
-                finish()
+                    finish()
 
-                dialog.dismiss()
+                    dialog.dismiss()
+                }
             }
         }
     }

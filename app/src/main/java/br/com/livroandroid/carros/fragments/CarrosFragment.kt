@@ -17,6 +17,7 @@ import br.com.livroandroid.carros.domain.Carro
 import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.domain.event.CarroEvent
+import br.com.livroandroid.carros.domain.retroft.CarroServiceRetrofit
 import br.com.livroandroid.carros.extensions.invisible
 import br.com.livroandroid.carros.extensions.runOnUiThread
 import br.com.livroandroid.carros.extensions.toast
@@ -29,6 +30,9 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 /**
@@ -107,24 +111,56 @@ class CarrosFragment : BaseFragment() {
             visible(progress)
         }
 
-        doAsync(exceptionHandler = { e -> handleError(e) }) {
+        val call = CarroServiceRetrofit.getCarrosAsync(tipo)
+        call.enqueue(object:Callback<List<Carro>>{
+            override fun onFailure(call: Call<List<Carro>>, t: Throwable) {
+                toast("Erro ${t.message}")
+            }
 
-            carros = CarroService.getCarros(tipo, refresh)
+            override fun onResponse(call: Call<List<Carro>>, response: Response<List<Carro>>) {
+                val carrosList = response.body()?.toMutableList()
 
-            uiThread {
-                invisible(progress)
-                swipeToRefresh.isRefreshing = false
+                if(carrosList != null) {
 
-                recyclerView?.adapter = CarroAdapter(context,carros) { c, longClick ->
-                    if (longClick) {
-                        onLongClickCarro(c)
-                    } else {
-                        onClickCarro(c)
+                    toast("Retrofit OK ${carrosList.size}")
+
+                    carros = carrosList
+
+                    invisible(progress)
+                    swipeToRefresh.isRefreshing = false
+
+                    recyclerView?.adapter = CarroAdapter(context,carros) { c, longClick ->
+                        if (longClick) {
+                            onLongClickCarro(c)
+                        } else {
+                            onClickCarro(c)
+                        }
                     }
                 }
             }
+        })
 
-        }
+        /*doAsync(exceptionHandler = { e -> handleError(e) }) {
+
+            val carrosList = CarroServiceRetrofit.getCarros(tipo, refresh)
+
+            if(carrosList != null) {
+                carros = carrosList
+
+                uiThread {
+                    invisible(progress)
+                    swipeToRefresh.isRefreshing = false
+
+                    recyclerView?.adapter = CarroAdapter(context,carros) { c, longClick ->
+                        if (longClick) {
+                            onLongClickCarro(c)
+                        } else {
+                            onClickCarro(c)
+                        }
+                    }
+                }
+            }
+        }*/
     }
 
     private fun onLongClickCarro(c: Carro) {
