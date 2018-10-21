@@ -1,4 +1,4 @@
-package br.com.livroandroid.carros.domain.retroft
+package br.com.livroandroid.carros.domain.retrofit
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

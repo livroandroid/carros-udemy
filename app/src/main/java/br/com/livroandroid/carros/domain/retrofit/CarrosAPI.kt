@@ -1,4 +1,4 @@
-package br.com.livroandroid.carros.domain.retroft
+package br.com.livroandroid.carros.domain.retrofit
 
 import br.com.livroandroid.carros.domain.Carro
 import br.com.livroandroid.carros.domain.rest.Response
@@ -6,6 +6,8 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface CarrosAPI {
+
+    // http://livrowebservices.com.br/rest/carros/
 
     @GET("tipo/{tipo}")
     fun getCarros(@Path("tipo") tipo: String): Call<MutableList<Carro>>
