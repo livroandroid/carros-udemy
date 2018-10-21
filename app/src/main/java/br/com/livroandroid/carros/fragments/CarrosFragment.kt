@@ -1,6 +1,7 @@
 package br.com.livroandroid.carros.fragments
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,11 +18,17 @@ import br.com.livroandroid.carros.domain.Carro
 import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.domain.event.CarroEvent
-import br.com.livroandroid.carros.domain.retroft.CarroServiceRetrofit
+import br.com.livroandroid.carros.domain.rest.Response
+import br.com.livroandroid.carros.domain.retrofit.CarroServiceRetrofit
 import br.com.livroandroid.carros.extensions.invisible
 import br.com.livroandroid.carros.extensions.runOnUiThread
 import br.com.livroandroid.carros.extensions.toast
 import br.com.livroandroid.carros.extensions.visible
+import io.reactivex.Observable
+import io.reactivex.Scheduler
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_carros.*
 import kotlinx.android.synthetic.main.include_progress.*
 import org.greenrobot.eventbus.EventBus
@@ -32,8 +39,6 @@ import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
 import retrofit2.Call
 import retrofit2.Callback
-import retrofit2.Response
-import java.util.*
 
 /**
  * A simple [Fragment] subclass.
@@ -98,6 +103,7 @@ class CarrosFragment : BaseFragment() {
         }
     }
 
+    @SuppressLint("CheckResult")
     private fun taskCarros(refresh: Boolean = false) {
 
 //        if(! isNetworkAvailable()) {
@@ -111,14 +117,16 @@ class CarrosFragment : BaseFragment() {
             visible(progress)
         }
 
-        val call = CarroServiceRetrofit.getCarrosAsync(tipo)
-        call.enqueue(object:Callback<List<Carro>>{
-            override fun onFailure(call: Call<List<Carro>>, t: Throwable) {
+        // Retrofit
+        val api = CarroServiceRetrofit.getCarrosAPI()
+        val call = api.getCarros(tipo.name)
+        call.enqueue(object: Callback<MutableList<Carro>> {
+            override fun onFailure(call: Call<MutableList<Carro>>, t: Throwable) {
                 toast("Erro ${t.message}")
             }
 
-            override fun onResponse(call: Call<List<Carro>>, response: Response<List<Carro>>) {
-                val carrosList = response.body()?.toMutableList()
+            override fun onResponse(call: Call<MutableList<Carro>>, response: retrofit2.Response<MutableList<Carro>>) {
+                val carrosList = response.body()
 
                 if(carrosList != null) {
 
@@ -140,7 +148,10 @@ class CarrosFragment : BaseFragment() {
             }
         })
 
-        /*doAsync(exceptionHandler = { e -> handleError(e) }) {
+        /*
+        // ANKO - OKHttp
+
+        doAsync(exceptionHandler = { e -> handleError(e) }) {
 
             val carrosList = CarroServiceRetrofit.getCarros(tipo, refresh)
 
