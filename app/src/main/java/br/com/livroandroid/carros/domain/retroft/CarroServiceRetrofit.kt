@@ -4,11 +4,13 @@ import android.util.Base64
 import br.com.livroandroid.carros.domain.Carro
 import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.domain.rest.Response
+import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
+import java.util.concurrent.Callable
 
 /**
  * Implementação com Retrofit
@@ -21,14 +23,18 @@ object CarroServiceRetrofit {
         service = RetrofitFactory.getService(BASE_URL, CarrosAPI::class.java)
     }
 
-    fun getCarrosAsync(tipo: TipoCarro): Call<List<Carro>> {
+    fun getCarrosAsync(tipo: TipoCarro): Call<MutableList<Carro>> {
         return service.getCarros(tipo.name)
     }
 
+    fun getCarrosRx(tipo: TipoCarro): Observable<MutableList<Carro>> {
+        return service.getCarrosRx(tipo.name)
+    }
+
     // Busca os carros por tipo (clássicos, esportivos ou luxo)
-    fun getCarros(tipo: TipoCarro, refresh: Boolean = false): MutableList<Carro>? {
+    fun getCarros(tipo: TipoCarro): MutableList<Carro>? {
         val call = service.getCarros(tipo.name)
-        return call.execute().body()?.toMutableList()
+        return call.execute().body()
     }
 
     // Salva um carro

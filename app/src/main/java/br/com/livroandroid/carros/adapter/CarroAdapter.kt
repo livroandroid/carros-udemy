@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.include_progress.view.*
 // Define o construtor que recebe (carros,onClick)
 class CarroAdapter (
         val context: Context,
-        val carros: List<Carro>,
+        val carros: MutableList<Carro>,
         val onClick: (Carro, longClick: Boolean) -> Unit
         /*val onLongClick: (Carro) -> Boolean*/):
         RecyclerView.Adapter<CarroAdapter.CarrosViewHolder>() {

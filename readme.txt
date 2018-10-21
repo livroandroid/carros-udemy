@@ -179,3 +179,7 @@
 
     - Adicionado lib Retrofit no Projeto.
 
+* 38-rx
+
+    - Rx.
+

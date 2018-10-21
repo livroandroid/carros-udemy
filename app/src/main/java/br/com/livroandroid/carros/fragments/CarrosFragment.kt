@@ -1,6 +1,7 @@
 package br.com.livroandroid.carros.fragments
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -18,10 +19,15 @@ import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.domain.event.CarroEvent
 import br.com.livroandroid.carros.domain.retroft.CarroServiceRetrofit
+import br.com.livroandroid.carros.domain.retroft.CarrosAPI
 import br.com.livroandroid.carros.extensions.invisible
 import br.com.livroandroid.carros.extensions.runOnUiThread
 import br.com.livroandroid.carros.extensions.toast
 import br.com.livroandroid.carros.extensions.visible
+import io.reactivex.Observable
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_carros.*
 import kotlinx.android.synthetic.main.include_progress.*
 import org.greenrobot.eventbus.EventBus
@@ -98,6 +104,7 @@ class CarrosFragment : BaseFragment() {
         }
     }
 
+    @SuppressLint("CheckResult")
     private fun taskCarros(refresh: Boolean = false) {
 
 //        if(! isNetworkAvailable()) {
@@ -111,6 +118,29 @@ class CarrosFragment : BaseFragment() {
             visible(progress)
         }
 
+//        Observable.fromCallable { CarroServiceRetrofit.getCarros(tipo) }
+
+        CarroServiceRetrofit.getCarrosRx(tipo)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { carros ->
+                if(carros != null) {
+                    invisible(progress)
+                    swipeToRefresh.isRefreshing = false
+
+                    toast("Rx OK ${carros.size}")
+
+                    recyclerView?.adapter = CarroAdapter(context,carros) { c, longClick ->
+                        if (longClick) {
+                            onLongClickCarro(c)
+                        } else {
+                            onClickCarro(c)
+                        }
+                    }
+                }
+            }
+
+        /*// Retrofit
         val call = CarroServiceRetrofit.getCarrosAsync(tipo)
         call.enqueue(object:Callback<List<Carro>>{
             override fun onFailure(call: Call<List<Carro>>, t: Throwable) {
@@ -138,9 +168,12 @@ class CarrosFragment : BaseFragment() {
                     }
                 }
             }
-        })
+        })*/
 
-        /*doAsync(exceptionHandler = { e -> handleError(e) }) {
+        /*
+        // ANKO - OKHttp
+
+        doAsync(exceptionHandler = { e -> handleError(e) }) {
 
             val carrosList = CarroServiceRetrofit.getCarros(tipo, refresh)
 

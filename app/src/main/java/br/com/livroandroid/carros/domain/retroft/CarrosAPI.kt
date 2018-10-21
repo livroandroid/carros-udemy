@@ -2,13 +2,17 @@ package br.com.livroandroid.carros.domain.retroft
 
 import br.com.livroandroid.carros.domain.Carro
 import br.com.livroandroid.carros.domain.rest.Response
+import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.*
 
 interface CarrosAPI {
 
     @GET("tipo/{tipo}")
-    fun getCarros(@Path("tipo") tipo: String): Call<List<Carro>>
+    fun getCarros(@Path("tipo") tipo: String): Call<MutableList<Carro>>
+
+    @GET("tipo/{tipo}")
+    fun getCarrosRx(@Path("tipo") tipo: String): Observable<MutableList<Carro>>
 
     @POST("./")
     fun save(@Body carro: Carro): Call<Response>
