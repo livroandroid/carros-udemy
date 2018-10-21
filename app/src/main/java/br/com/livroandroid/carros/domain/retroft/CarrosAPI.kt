@@ -8,7 +8,7 @@ import retrofit2.http.*
 interface CarrosAPI {
 
     @GET("tipo/{tipo}")
-    fun getCarros(@Path("tipo") tipo: String): Call<List<Carro>>
+    fun getCarros(@Path("tipo") tipo: String): Call<MutableList<Carro>>
 
     @POST("./")
     fun save(@Body carro: Carro): Call<Response>

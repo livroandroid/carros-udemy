@@ -21,14 +21,14 @@ object CarroServiceRetrofit {
         service = RetrofitFactory.getService(BASE_URL, CarrosAPI::class.java)
     }
 
-    fun getCarrosAsync(tipo: TipoCarro): Call<List<Carro>> {
+    fun getCarrosAsync(tipo: TipoCarro): Call<MutableList<Carro>> {
         return service.getCarros(tipo.name)
     }
 
     // Busca os carros por tipo (clássicos, esportivos ou luxo)
     fun getCarros(tipo: TipoCarro, refresh: Boolean = false): MutableList<Carro>? {
         val call = service.getCarros(tipo.name)
-        return call.execute().body()?.toMutableList()
+        return call.execute().body()
     }
 
     // Salva um carro
