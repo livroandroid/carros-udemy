@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import com.squareup.picasso.Picasso
-import java.lang.Exception
 
 fun ImageView.loadUrl(url: String?, progress: ProgressBar? = null) {
     if (url == null || url.trim().isEmpty()) {

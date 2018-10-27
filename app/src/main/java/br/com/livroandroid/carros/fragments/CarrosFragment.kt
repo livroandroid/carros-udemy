@@ -19,14 +19,11 @@ import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.domain.event.CarroEvent
 import br.com.livroandroid.carros.domain.retroft.CarroServiceRetrofit
-import br.com.livroandroid.carros.domain.retroft.CarrosAPI
 import br.com.livroandroid.carros.extensions.invisible
 import br.com.livroandroid.carros.extensions.runOnUiThread
 import br.com.livroandroid.carros.extensions.toast
 import br.com.livroandroid.carros.extensions.visible
 import com.google.firebase.analytics.FirebaseAnalytics
-import io.reactivex.Observable
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_carros.*
@@ -37,9 +34,6 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.util.*
 
 /**
@@ -284,6 +278,9 @@ class CarrosFragment : BaseFragment() {
         // Click simples
         if (actionMode == null) {
             activity?.startActivity<CarroActivity>("carro" to c)
+
+            //val s = "Ricardo"
+            //print(s[10])
 
             // GA
             val bundle = Bundle()

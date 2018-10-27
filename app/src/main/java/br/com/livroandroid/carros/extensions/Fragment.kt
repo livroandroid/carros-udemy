@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 
 fun Fragment.runOnUiThread(action: () -> Unit) {
     activity?.runOnUiThread(action)

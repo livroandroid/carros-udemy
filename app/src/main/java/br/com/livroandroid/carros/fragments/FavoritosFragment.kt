@@ -2,35 +2,30 @@ package br.com.livroandroid.carros.fragments
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.livroandroid.carros.activity.CarroActivity
-
 import br.com.livroandroid.carros.R
+import br.com.livroandroid.carros.activity.CarroActivity
 import br.com.livroandroid.carros.adapter.CarroAdapter
 import br.com.livroandroid.carros.domain.Carro
-import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.FavoritosService
-import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.domain.event.CarroEvent
-import br.com.livroandroid.carros.extensions.*
-import kotlinx.android.synthetic.main.adapter_carro.*
-
+import br.com.livroandroid.carros.extensions.invisible
+import br.com.livroandroid.carros.extensions.toast
+import br.com.livroandroid.carros.extensions.visible
 import kotlinx.android.synthetic.main.fragment_carros.*
 import kotlinx.android.synthetic.main.include_progress.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
-import org.jetbrains.anko.custom.onUiThread
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.uiThread
-import java.util.ArrayList
+import java.util.*
 
 /**
  * A simple [Fragment] subclass.

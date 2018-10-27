@@ -1,7 +1,6 @@
 package br.com.livroandroid.carros.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.fragments.CarrosFragment

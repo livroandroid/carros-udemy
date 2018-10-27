@@ -6,11 +6,7 @@ import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.domain.rest.Response
 import io.reactivex.Observable
 import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
-import java.util.concurrent.Callable
 
 /**
  * Implementação com Retrofit

@@ -11,9 +11,10 @@ import br.com.livroandroid.carros.extensions.fromJson
 import br.com.livroandroid.carros.extensions.toJson
 import br.com.livroandroid.carros.utils.HttpHelper
 import br.com.livroandroid.carros.utils.Prefs
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import java.io.File
 import java.net.URL
-import java.util.ArrayList
+import java.util.*
 
 class CarroService {
     companion object {
@@ -27,6 +28,7 @@ class CarroService {
 
             Log.d(TAG, "> CarroService.getCarros() -> ${tipo.name}" )
 
+//            val cache = FirebaseRemoteConfig.getInstance().getBoolean("cache_lista_carros")
             val cache = Prefs.isCacheOn()
 
             // Tenta buscar do banco

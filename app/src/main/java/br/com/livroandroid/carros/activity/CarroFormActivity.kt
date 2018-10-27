@@ -3,11 +3,10 @@ package br.com.livroandroid.carros.activity
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.domain.Carro
-import br.com.livroandroid.carros.domain.CarroService
 import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.domain.event.CarroEvent
 import br.com.livroandroid.carros.domain.retroft.CarroServiceRetrofit

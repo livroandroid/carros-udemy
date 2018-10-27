@@ -191,3 +191,10 @@
 
     - Configuração do Analytics
 
+* 41-firebase-crash
+
+    - Configuração do Crashlytics
+
+* 42-firebase-remoteconfig
+
+    - Remote Config

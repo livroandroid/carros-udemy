@@ -3,8 +3,7 @@ package br.com.livroandroid.carros.extensions
 import org.w3c.dom.Element
 import org.w3c.dom.Node
 import java.io.ByteArrayInputStream
-import java.io.InputStream
-import java.util.ArrayList
+import java.util.*
 import javax.xml.parsers.DocumentBuilderFactory
 
 class Xml(private val root: Element) {

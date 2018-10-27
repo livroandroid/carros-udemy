@@ -1,11 +1,9 @@
 package br.com.livroandroid.carros.utils
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import br.com.livroandroid.carros.CarrosApplication
 import br.com.livroandroid.carros.R
-import java.lang.reflect.Array.setInt
 
 class Prefs {
 

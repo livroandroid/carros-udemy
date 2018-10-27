@@ -1,19 +1,23 @@
 package br.com.livroandroid.carros.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.viewpager.widget.ViewPager
+import br.com.livroandroid.carros.BuildConfig
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.adapter.TabsAdapter
 import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.utils.Prefs
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import org.jetbrains.anko.startActivity
@@ -24,6 +28,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private val mFirebaseAnalytics: FirebaseAnalytics by lazy {
         FirebaseAnalytics.getInstance(this)
+    }
+
+    private val mFirebaseRemoteConfig: FirebaseRemoteConfig by lazy {
+        FirebaseRemoteConfig.getInstance()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,8 +48,55 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             startActivity<CarroFormActivity>()
         }
 
+        // GA
         val bundle = Bundle()
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle)
+
+        // Remote Config
+        initFirebaseConfig()
+    }
+
+    private fun initFirebaseConfig() {
+
+        val configSettings = FirebaseRemoteConfigSettings.Builder()
+                .setDeveloperModeEnabled(BuildConfig.DEBUG)
+                .build()
+        mFirebaseRemoteConfig.setConfigSettings(configSettings)
+
+        //fetchFirebaseConfig()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        fetchFirebaseConfig()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun fetchFirebaseConfig() {
+        mFirebaseAnalytics.logEvent("fetchFirebaseConfig", Bundle())
+
+        var cacheExpiration: Long = 3600
+
+        if (mFirebaseRemoteConfig.info.configSettings.isDeveloperModeEnabled) {
+            cacheExpiration = 0
+        }
+
+        mFirebaseRemoteConfig.fetch(cacheExpiration)!!
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        toast("Fetch Succeeded")
+
+                        // After config data is successfully fetched, it must be activated before newly fetched
+                        // values are returned.
+                        mFirebaseRemoteConfig.activateFetched()
+
+                        val cache = FirebaseRemoteConfig.getInstance().getBoolean("cache_lista_carros")
+                        toast("Cache $cache")
+                    } else {
+                        toast("Fetch Failed")
+                    }
+                }
     }
 
     private fun initNavDrawer() {

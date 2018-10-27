@@ -4,15 +4,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.domain.Carro
 import br.com.livroandroid.carros.extensions.loadUrl
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_carro_form_contents.view.*
 import kotlinx.android.synthetic.main.adapter_carro.view.*
 import kotlinx.android.synthetic.main.include_progress.view.*
 

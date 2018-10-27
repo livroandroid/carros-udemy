@@ -3,7 +3,6 @@ package br.com.livroandroid.carros
 import android.app.Application
 import android.content.Context
 import android.util.Log
-import java.lang.IllegalStateException
 
 /**
  * MultiDexApplication:
