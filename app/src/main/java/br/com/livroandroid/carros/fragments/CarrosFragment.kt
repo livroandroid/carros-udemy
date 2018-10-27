@@ -21,6 +21,7 @@ import br.com.livroandroid.carros.extensions.invisible
 import br.com.livroandroid.carros.extensions.runOnUiThread
 import br.com.livroandroid.carros.extensions.toast
 import br.com.livroandroid.carros.extensions.visible
+import com.crashlytics.android.Crashlytics
 import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.android.synthetic.main.fragment_carros.*
 import kotlinx.android.synthetic.main.include_progress.*
@@ -219,6 +220,8 @@ class CarrosFragment : BaseFragment() {
             val bundle = Bundle()
             bundle.putString("carro",c.nome)
             mFirebaseAnalytics.logEvent("click_carro", bundle)
+
+            Crashlytics.getInstance().crash()
         } else {
             // Se a CAB está ativada
             // Seleciona o carro
