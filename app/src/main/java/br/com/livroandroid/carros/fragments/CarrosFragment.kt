@@ -128,7 +128,7 @@ class CarrosFragment : BaseFragment() {
                     invisible(progress)
                     swipeToRefresh.isRefreshing = false
 
-                    toast("Rx OK ${carros.size}")
+                    //toast("Rx OK ${carros.size}")
 
                     recyclerView?.adapter = CarroAdapter(context,carros) { c, longClick ->
                         if (longClick) {
