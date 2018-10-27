@@ -1,7 +1,10 @@
 package br.com.livroandroid.carros.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -16,6 +19,7 @@ import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.utils.Prefs
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,6 +29,10 @@ import org.jetbrains.anko.toast
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    companion object {
+        private const val TAG = "carros"
+    }
 
     private val mFirebaseAnalytics: FirebaseAnalytics by lazy {
         FirebaseAnalytics.getInstance(this)
@@ -54,6 +62,42 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         // Remote Config
         initFirebaseConfig()
+        
+        initDynamicLink(intent)
+    }
+
+    private fun initDynamicLink(intent: Intent) {
+        FirebaseDynamicLinks.getInstance()
+                .getDynamicLink(intent)
+                .addOnSuccessListener(this) {
+                    var deepLink: Uri? = null
+                    if (it != null) {
+                        deepLink = it.link
+
+                        Log.d(TAG,"Link: $deepLink")
+
+                        val protocol = deepLink.scheme
+                        val server = deepLink.authority
+                        val path = deepLink.path
+                        val args = deepLink.queryParameterNames
+                        val p = deepLink.getQueryParameter("p")
+                        val nome = deepLink.getQueryParameter("nome")
+
+                        Log.d(TAG, "-------------------")
+                        Log.d(TAG, "deepLink $deepLink")
+                        Log.d(TAG, "protocol $protocol")
+                        Log.d(TAG, "server $server")
+                        Log.d(TAG, "path $path")
+                        Log.d(TAG, "args $args")
+                        Log.d(TAG, "p $p")
+                        Log.d(TAG, "nome $nome")
+                        Log.d(TAG, "-------------------")
+                    }
+                }
+                .addOnFailureListener(this) {
+                    e ->
+                    Log.w(TAG, "getDynamicLink:onFailure", e)
+                }
     }
 
     private fun initFirebaseConfig() {
