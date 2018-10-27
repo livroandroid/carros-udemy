@@ -24,6 +24,7 @@ import br.com.livroandroid.carros.extensions.invisible
 import br.com.livroandroid.carros.extensions.runOnUiThread
 import br.com.livroandroid.carros.extensions.toast
 import br.com.livroandroid.carros.extensions.visible
+import com.google.firebase.analytics.FirebaseAnalytics
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -51,6 +52,10 @@ class CarrosFragment : BaseFragment() {
     private lateinit var tipo: TipoCarro
 
     private lateinit var carros: MutableList<Carro>
+
+    private val mFirebaseAnalytics: FirebaseAnalytics by lazy {
+        FirebaseAnalytics.getInstance(context)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -279,6 +284,11 @@ class CarrosFragment : BaseFragment() {
         // Click simples
         if (actionMode == null) {
             activity?.startActivity<CarroActivity>("carro" to c)
+
+            // GA
+            val bundle = Bundle()
+            bundle.putString("carro",c.nome)
+            mFirebaseAnalytics.logEvent("click_carro", bundle)
         } else {
             // Se a CAB está ativada
             // Seleciona o carro

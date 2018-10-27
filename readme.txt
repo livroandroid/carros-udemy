@@ -183,7 +183,11 @@
 
     - Rx.
 
-* 39
+* 39-firebase
 
     - Firebase
+
+* 40-firebase-ga
+
+    - Configuração do Analytics
 

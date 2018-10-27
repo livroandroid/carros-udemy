@@ -13,6 +13,7 @@ import br.com.livroandroid.carros.domain.TipoCarro
 import br.com.livroandroid.carros.utils.Prefs
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import org.jetbrains.anko.startActivity
@@ -20,6 +21,10 @@ import org.jetbrains.anko.toast
 
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    private val mFirebaseAnalytics: FirebaseAnalytics by lazy {
+        FirebaseAnalytics.getInstance(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +39,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         fab.setOnClickListener {
             startActivity<CarroFormActivity>()
         }
+
+        val bundle = Bundle()
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle)
     }
 
     private fun initNavDrawer() {
