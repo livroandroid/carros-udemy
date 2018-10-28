@@ -22,6 +22,7 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import kotlinx.android.synthetic.main.activity_main.*
@@ -75,6 +76,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             val token = result.token
             Log.d(MyFirebaseMessagingService.TAG, "Firebase Token $token")
         }
+
+        FirebaseMessaging.getInstance().subscribeToTopic("news")
 
         val nome = intent.getStringExtra("nome")
         val sobrenome = intent.getStringExtra("sobrenome")
