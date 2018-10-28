@@ -16,10 +16,12 @@ import br.com.livroandroid.carros.BuildConfig
 import br.com.livroandroid.carros.R
 import br.com.livroandroid.carros.adapter.TabsAdapter
 import br.com.livroandroid.carros.domain.TipoCarro
+import br.com.livroandroid.carros.fcm.MyFirebaseMessagingService
 import br.com.livroandroid.carros.utils.Prefs
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
+import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import kotlinx.android.synthetic.main.activity_main.*
@@ -64,6 +66,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         initFirebaseConfig()
         
         initDynamicLink(intent)
+
+        initFcm()
+    }
+
+    private fun initFcm() {
+        val token = FirebaseInstanceId.getInstance().instanceId
+        Log.d(MyFirebaseMessagingService.TAG, "Firebase Token ${token}")
     }
 
     private fun initDynamicLink(intent: Intent) {
