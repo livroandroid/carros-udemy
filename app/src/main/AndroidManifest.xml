@@ -20,6 +20,11 @@
         <meta-data android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/MAPS_API_KEY"/>
 
+        <!-- Firebase -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_notification" />
+
         <!-- Permitir exportar arquivos para outros apps -->
         <provider
             android:name="androidx.core.content.FileProvider"

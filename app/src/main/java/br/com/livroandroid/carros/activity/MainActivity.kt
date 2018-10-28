@@ -71,8 +71,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun initFcm() {
-        val token = FirebaseInstanceId.getInstance().instanceId
-        Log.d(MyFirebaseMessagingService.TAG, "Firebase Token ${token}")
+        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { result ->
+            val token = result.token
+            Log.d(MyFirebaseMessagingService.TAG, "Firebase Token $token")
+        }
+
+        val nome = intent.getStringExtra("nome")
+        val sobrenome = intent.getStringExtra("sobrenome")
+        if(nome != null) {
+            toast("Nome $nome $sobrenome")
+        }
     }
 
     private fun initDynamicLink(intent: Intent) {
@@ -138,14 +146,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         mFirebaseRemoteConfig.fetch(cacheExpiration)!!
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        toast("Fetch Succeeded")
+                        //toast("Fetch Succeeded")
 
                         // After config data is successfully fetched, it must be activated before newly fetched
                         // values are returned.
                         mFirebaseRemoteConfig.activateFetched()
 
                         val cache = FirebaseRemoteConfig.getInstance().getBoolean("cache_lista_carros")
-                        toast("Cache $cache")
+                        Log.d(TAG,"FirebaseConfig, cache: $cache")
                     } else {
                         toast("Fetch Failed")
                     }
